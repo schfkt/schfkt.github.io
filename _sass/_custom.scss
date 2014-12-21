@@ -18,6 +18,11 @@ pre {
 
 a {
   text-decoration: none;
+  color: #de4d1f;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .post-list {
@@ -28,3 +33,10 @@ a {
   }
 }
 
+.post {
+  header {
+    .post-meta {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+}
