@@ -1,0 +1,30 @@
+header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .container {
+    text-align: center;
+    img {
+      display: block;
+      margin: 0 auto 10px;
+    }
+  }
+}
+
+pre {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  padding: 0 .4em;
+}
+
+a {
+  text-decoration: none;
+}
+
+.post-list {
+  list-style-type: none;
+  padding: 0;
+  .post-meta {
+    margin-right: 20px;
+  }
+}
+
