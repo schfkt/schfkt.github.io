@@ -1,29 +1,5 @@
-#container {
-  width: 100%;
-  max-width: 720px;
-  padding: 0 1%;
-  margin: 0 auto;
-}
-
-header {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  .container {
-    text-align: center;
-    img {
-      display: block;
-      margin: 0 auto 10px;
-      width: 100%;
-      max-width: 494px;
-      height: auto;
-    }
-  }
-}
-
-pre {
-  border: 1px solid #ddd;
-  background-color: #eef;
-  padding: 0 .4em;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lobster' cursive;
 }
 
 a {
@@ -33,6 +9,31 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+pre {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  padding: 0 .4em;
+}
+
+#container {
+  width: 100%;
+  max-width: 720px;
+  padding: 0 1%;
+  margin: 0 auto;
+}
+
+.top-header {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 494px;
+    height: auto;
+  }
 }
 
 .post-list {
@@ -46,6 +47,7 @@ a:hover {
 .post {
   header {
     .post-meta {
+      font-size: 85%;
       border-bottom: 1px solid #ddd;
     }
   }
