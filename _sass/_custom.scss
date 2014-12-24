@@ -28,7 +28,6 @@ p code {
 #container {
   width: 100%;
   max-width: 720px;
-  padding: 0 1%;
   margin: 0 auto;
 }
 
@@ -47,8 +46,9 @@ p code {
 .post-list {
   list-style-type: none;
   padding: 0;
-  .post-meta {
-    margin-right: 20px;
+  li {
+    text-align: center;
+    border-top: 1px #ddd solid;
   }
 }
 
