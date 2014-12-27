@@ -29,7 +29,7 @@ task :post do
   end
 end
 
-desc 'Run jekyll server -w'
+desc 'Run jekyll serve -w'
 task :s do
   system 'jekyll serve -w'
 end
