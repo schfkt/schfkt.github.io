@@ -4,11 +4,12 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
   text-decoration: none;
-  color: #de4d1f;
+  color: #8CC665;
 }
 
 a:hover {
   text-decoration: underline;
+  color: #44A340;
 }
 
 pre {
@@ -25,10 +26,34 @@ p code {
   padding: 2px 5px;
 }
 
+blockquote {
+  font-style: italic;
+}
+
 #container {
   width: 94%;
   max-width: 720px;
   margin: 0 auto;
+}
+
+#navigation {
+  margin: 0;
+  border-bottom: 1px #ddd solid;
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    padding: 0 10px;
+
+    a {
+      font-family: 'Lobster', cursive;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
 }
 
 .top-header {
@@ -47,21 +72,22 @@ p code {
 .post-list {
   list-style-type: none;
   padding: 0;
+  margin: 5px 0;
 
   li {
     text-align: center;
-    border-top: 1px #ddd solid;
     padding: 3px 0;
+
+    a {
+      color: #222;
+    }
   }
 }
 
 .post {
   .post-header {
     text-align: center;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    padding: 20px 0;
-    margin-bottom: 40px;
+    margin: 40px 0;
 
     .post-meta {
       font-size: 85%;
