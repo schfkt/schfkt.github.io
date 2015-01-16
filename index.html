@@ -1,10 +1,14 @@
 ---
 layout: default
 ---
-<ul class="post-list">
-  {% for post in site.posts %}
-  <li>
-    <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-  </li>
-  {% endfor %}
-</ul>
+{% for post in site.posts %}
+  <div class="post-in-list">
+    <h3>
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    </h3>
+    {{ post.excerpt }}
+    <div class="read-more">
+      <a href="{{ post.url | prepend: site.baseurl }}">Read more...</a>
+    </div>
+  </div>
+{% endfor %}
