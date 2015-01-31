@@ -1,15 +1,17 @@
+$link-color: #de4d1f;
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Play', sans-serif;
 }
 
 a {
   text-decoration: none;
-  color: #8CC665;
+  color: $link-color;
 }
 
 a:hover {
   text-decoration: underline;
-  color: #44A340;
+  color: darken($link-color, 10%);
 }
 
 pre {
@@ -88,11 +90,6 @@ blockquote {
   .read-more {
     text-align: center;
     margin-bottom: 14px;
-
-    a {
-      font-style: italic;
-      color: #444;
-    }
   }
 }
 
