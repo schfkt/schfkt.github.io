@@ -1,5 +1,5 @@
 # Site settings
-title: Bloge
+title: Blog
 permalink: /:year/:month/:day/:title.html
 
 # Build settings
