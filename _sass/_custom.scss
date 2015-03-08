@@ -30,29 +30,35 @@ blockquote {
 }
 
 #navigation {
-  margin: 14px 0 0;
   list-style-type: none;
   text-align: center;
+  border-bottom: 1px solid #e3e3e3;
+  margin: 0;
   padding: 0;
 
   li {
     display: inline-block;
-    padding: 0 5px;
+    margin-right: -5px;
 
     a {
+      display: block;
+      padding: 4px 15px;
+      border-right: 1px solid #e3e3e3;
       font-family: 'Play', sans-serif;
       font-size: 24px;
       font-weight: bold;
       text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    a:hover {
+      color: #fff;
+      background-color: #a4332b;
     }
   }
 
-  li:hover {
-    background-color: #222;
-
-    a {
-      color: #fff;
-    }
+  li:first-child a {
+    border-left: 1px solid #e3e3e3;
   }
 }
 
