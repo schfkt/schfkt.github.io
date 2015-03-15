@@ -32,68 +32,42 @@ blockquote {
 #navigation {
   list-style-type: none;
   text-align: center;
-  border-bottom: 1px solid #e3e3e3;
   margin: 0;
   padding: 0;
 
   li {
     display: inline-block;
-    margin-right: -5px;
+    margin-right: -4px;
 
     a {
       display: block;
-      padding: 4px 15px;
-      border-right: 1px solid #e3e3e3;
+      padding: 2px 10px;
       font-family: 'Play', sans-serif;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
-      text-decoration: none;
       text-transform: uppercase;
     }
 
     a:hover {
       color: #fff;
-      background-color: #a4332b;
+      background-color: #222;
     }
   }
-
-  li:first-child a {
-    border-left: 1px solid #e3e3e3;
-  }
 }
 
-.top-header {
-  margin-top: 20px;
-  margin-bottom: 40px;
-
-  img {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 494px;
-    height: auto;
-  }
+.read-more a {
+  text-decoration: none;
 }
 
-.post-in-list {
-  h3 {
-    margin: 28px 0 14px;
-    text-align: center;
+.post-header {
+  margin: 50px 0 20px;
+
+  h1 > a {
+    text-decoration: none;
   }
 
-  p {
-    margin-bottom: 0;
-  }
-}
-
-.post {
-  .post-header {
-    text-align: center;
-    margin: 40px 0;
-
-    .post-meta {
-      font-size: 85%;
-      margin: 0;
-    }
+  .post-meta {
+    font-size: 85%;
+    margin: 0;
   }
 }
