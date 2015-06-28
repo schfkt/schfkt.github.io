@@ -37,7 +37,6 @@ blockquote {
 
   li {
     display: inline-block;
-    margin-right: -4px;
 
     a {
       display: block;
@@ -45,7 +44,7 @@ blockquote {
       font-family: 'Play', sans-serif;
       font-size: 20px;
       font-weight: bold;
-      text-transform: uppercase;
+      text-decoration: none;
     }
 
     a:hover {
