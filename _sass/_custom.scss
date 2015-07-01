@@ -14,13 +14,19 @@ pre {
   padding: 14px;
 }
 
-p code {
+p > code,
+li > code {
   background-color: #e8e6e3;
   padding: 2px 5px;
+  word-wrap: normal;
 }
 
 blockquote {
   font-style: italic;
+}
+
+p img {
+  max-width: 100%;
 }
 
 #container {
