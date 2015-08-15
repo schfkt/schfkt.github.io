@@ -2,6 +2,7 @@
 layout: post
 title: "Vim, ctags и ruby"
 date: 2015-06-28
+tags: vim ruby
 ---
 
 Посмотрел недавно [скринкаст](http://www.pluralsight.com/courses/play-by-play-aaron-patterson)

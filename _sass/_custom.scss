@@ -1,3 +1,5 @@
+$light-black: #888;
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Play', sans-serif;
 }
@@ -60,6 +62,10 @@ p img {
   }
 }
 
+.light-color {
+  color: $light-black;
+}
+
 .post-header {
   margin: 50px 0 20px;
 
@@ -69,6 +75,17 @@ p img {
 
   .post-meta {
     font-size: 85%;
+    color: $light-black;
+    text-indent: 0;
     margin: 0;
+  }
+
+  .post-meta a {
+    color: $light-black;
+  }
+
+  .post-meta .tag-separator:after {
+    content: ' · ';
+    padding: 0 3px;
   }
 }
