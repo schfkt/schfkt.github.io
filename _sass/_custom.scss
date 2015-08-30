@@ -28,6 +28,7 @@ blockquote {
 }
 
 p img {
+  padding: 20px 0;
   max-width: 100%;
 }
 
@@ -67,13 +68,18 @@ p img {
 }
 
 .post-header {
-  margin: 50px 0 20px;
+  margin: 20px 0;
+
+  h1 {
+    text-align: center;
+  }
 
   h1 > a {
     text-decoration: none;
   }
 
   .post-meta {
+    text-align: center;
     font-size: 85%;
     color: $light-black;
     text-indent: 0;
