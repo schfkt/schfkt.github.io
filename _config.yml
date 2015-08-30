@@ -1,4 +1,5 @@
-title: Blog
+title: schfkt's website
+description: "Мой персональный сайт, посвящённый в основном программированию и всему с этим связанному"
 permalink: /:year/:month/:day/:title.html
 markdown: kramdown
 gems:

@@ -7,12 +7,13 @@ POSTS_DIR = File.join('.', '_posts')
 desc "Begin a new post in #{POSTS_DIR}"
 task :post do
   title = ENV["title"] || "new-post"
+  description = ENV["description"] || ""
   slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
   begin
     date = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d')
-  rescue => e
+  rescue
     puts "Error - date format must be YYYY-MM-DD, please check you typed it correctly!"
-    exit -1
+    exit(-1)
   end
   filename = File.join(POSTS_DIR, "#{date}-#{slug}.md")
   if File.exist?(filename) && ask("#{filename} already exists. Overwrite?", ['y', 'n']) == 'n'
@@ -24,6 +25,7 @@ task :post do
     post.puts "---"
     post.puts "layout: post"
     post.puts "title: \"#{title.gsub(/-/,' ')}\""
+    post.puts "description: \"#{description}\""
     post.puts "date: #{date}"
     post.puts "---"
   end

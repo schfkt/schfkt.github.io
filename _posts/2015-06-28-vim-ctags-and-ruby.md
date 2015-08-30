@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Vim, ctags и ruby"
+description: "В этом посте я рассмотрю различные способы интеграции ctags и vim, в основном полезные для написания кода на ruby"
 date: 2015-06-28
 tags: vim ruby
 ---
