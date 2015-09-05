@@ -1,8 +1,9 @@
-# Based on: https://github.com/plusjade/jekyll-bootstrap/blob/master/Rakefile
 require 'rake'
+require 'image_optim'
 
 POSTS_DIR = File.join('.', '_posts')
 
+# Based on: https://github.com/plusjade/jekyll-bootstrap/blob/master/Rakefile
 # Usage: rake post title="A Title" [date="2012-02-09"] [tags=[tag1,tag2]] [category="category"]
 desc "Begin a new post in #{POSTS_DIR}"
 task :post do
@@ -35,3 +36,12 @@ desc 'Run jekyll serve -w'
 task :serve do
   system 'jekyll serve -w'
 end
+
+desc 'Optimize images (specify a directory with dir=./dir)'
+task :image_optim do
+  image_optim = ImageOptim.new(pngout: false, svgo: false, verbose: true)
+  path = File.join('images', (ENV['dir'] ? ENV['dir'] : '**'), '*.*')
+  image_optim.optimize_images!(Dir[path])
+  puts 'Done'
+end
+
