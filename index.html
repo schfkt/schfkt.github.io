@@ -1,25 +1,12 @@
 ---
 layout: default
 ---
-{% for post in site.posts %}
-  <div class="post-header">
-    <h1>
-      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-    </h1>
-    <div class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</div>
-    {% if post.tags != empty %}
-      <div class="post-meta">
-        {% for tag in post.tags %}
-          <a href="/tags.html#{{ tag | cgi_escape }}">{{ tag }}</a>
-          {% unless forloop.last %}
-            <span class="tag-separator"></span>
-          {% endunless %}
-        {% endfor %}
-      </div>
-    {% endif %}
-  </div>
-  {{ post.excerpt }}
-  <div class="read-more">
-    <a class="light-color" href="{{ post.url | prepend: site.baseurl }}">Read more ...</a>
-  </div>
-{% endfor %}
+<ul class="posts">
+  {% for post in site.posts %}
+    <li>
+      <span class="date light-color">{{ post.date | date: "%b %-d, %Y" }}</span>
+      <span class="light-color">»</span>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>

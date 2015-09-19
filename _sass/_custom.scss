@@ -46,7 +46,7 @@ p img {
 #navigation {
   list-style-type: none;
   text-align: center;
-  margin: 0;
+  margin: 0 0 40px;
   padding: 0;
 
   li {
@@ -76,19 +76,33 @@ p img {
   }
 }
 
+.posts {
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    padding: 2px 0;
+
+    .date {
+      display: inline-block;
+      width: 100px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
 .light-color {
   color: $light-black;
 }
 
 .post-header {
-  margin: 40px 0 20px;
+  margin-bottom: 20px;
 
   h1 {
     text-align: center;
-  }
-
-  h1 > a {
-    text-decoration: none;
   }
 
   .post-meta {
