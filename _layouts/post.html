@@ -1,25 +1,23 @@
 ---
 layout: default
 ---
-<div class="post">
-  <header class="post-header">
-    <h1>{{ page.title }}</h1>
-    <div class="post-meta">{{ page.date | date: "%b %-d, %Y" }}</div>
-    {% if page.tags != empty %}
-      <div class="post-meta">
-        {% for tag in page.tags %}
-          <a href="/tags.html#{{ tag | cgi_escape }}">{{ tag }}</a>
-          {% unless forloop.last %}
-            <span class="tag-separator"></span>
-          {% endunless %}
-        {% endfor %}
-      </div>
-    {% endif %}
-  </header>
+<header class="page-header">
+  <h1>{{ page.title }}</h1>
+  <div class="page-meta">{{ page.date | date: "%b %-d, %Y" }}</div>
+  {% if page.tags != empty %}
+    <div class="page-meta">
+      {% for tag in page.tags %}
+        <a href="/tags.html#{{ tag | cgi_escape }}">{{ tag }}</a>
+        {% unless forloop.last %}
+          <span class="tag-separator"></span>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</header>
 
-  <article>
-    {{ content }}
-  </article>
+<article>
+  {{ content }}
+</article>
 
-  {% include disqus.html %}
-</div>
+{% include disqus.html %}

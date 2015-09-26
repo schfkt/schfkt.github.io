@@ -101,37 +101,38 @@ article img {
       width: 100px;
     }
 
+    .date,
+    .arrow {
+      color: $light-black;
+    }
+
     a {
       text-decoration: none;
     }
   }
 }
 
-.light-color {
-  color: $light-black;
-}
-
-.post-header {
+.page-header {
   margin-bottom: 20px;
 
   h1 {
     text-align: center;
   }
 
-  .post-meta {
+  .page-meta {
     text-align: center;
     font-size: 85%;
     color: $light-black;
     text-indent: 0;
     margin: 0;
-  }
 
-  .post-meta a {
-    color: $light-black;
-  }
+    a {
+      color: $light-black;
+    }
 
-  .post-meta .tag-separator:after {
-    content: ' · ';
-    padding: 0 3px;
+    .tag-separator:after {
+      content: ' · ';
+      padding: 0 3px;
+    }
   }
 }

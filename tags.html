@@ -15,8 +15,8 @@ description: "Статьи, сгруппированные по тэгам"
       {% for post in site.tags[this_word] %}
         {% if post.title != null %}
           <li>
-            <span class="date light-color">{{ post.date | date: "%b %-d, %Y" }}</span>
-            <span class="light-color">»</span>
+            <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <span class="arrow">»</span>
             <a href="{{ post.url }}">{{ post.title }}</a>
           </li>
         {% endif %}
