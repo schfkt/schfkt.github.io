@@ -32,9 +32,9 @@ task :post do
   end
 end
 
-desc 'Run jekyll serve -w'
+desc 'Run jekyll serve -w --drafts'
 task :serve do
-  system 'jekyll serve -w'
+  system 'jekyll serve -w --drafts'
 end
 
 desc 'Optimize images (specify a directory with dir=./dir)'

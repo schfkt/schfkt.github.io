@@ -26,10 +26,14 @@ li > code {
 
 blockquote {
   font-style: italic;
+  color: #777;
+  border-left: 4px solid #ddd;
+  padding: 0 15px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 article img {
-  margin: 20px 0;
   max-width: 100%;
   height: auto;
   -webkit-border-radius: 0.3em;
@@ -97,7 +101,6 @@ article img {
     padding: 4px 0;
 
     .date {
-      text-align: right;
       display: inline-block;
       width: 100px;
     }
