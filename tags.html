@@ -11,7 +11,7 @@ description: "Статьи, сгруппированные по тэгам"
   {% unless foorloop.last %}
     {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
     <h3 id="{{ this_word | cgi_escape }}">{{ this_word }}</h3>
-    <ul class="posts">
+    <ul class="posts tags-page">
       {% for post in site.tags[this_word] %}
         {% if post.title != null %}
           <li>

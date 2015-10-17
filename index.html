@@ -1,12 +1,14 @@
 ---
 layout: default
 ---
-<ul class="posts">
+<ul class="posts index-page">
   {% for post in site.posts %}
     <li>
-      <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
-      <span class="arrow">»</span>
-      <a href="{{ post.url }}">{{ post.title }}</a>
+      <div class="date">{{ post.date | date: "%b %-d, %Y" }}</div>
+      <h1>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </h1>
+      <p>{{ post.description }}</p>
     </li>
   {% endfor %}
 </ul>
