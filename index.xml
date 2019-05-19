@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>schfkt&#39;s website</title>
+    <link>https://schfkt.github.io/</link>
+    <description>Recent content on schfkt&#39;s website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 04 Oct 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://schfkt.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Советы по работе в vim</title>
+      <link>https://schfkt.github.io/blog/vim-advices/</link>
+      <pubDate>Sun, 04 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://schfkt.github.io/blog/vim-advices/</guid>
+      <description>Совершенно случайно наткнулся в интернетах на такую замечательную вещь: Mastering vim. Это небольшой (3,5 часа примерно) видео-курс по vim за авторством Damian Conway. По его словам, он угорает в vi/vim уже 30 лет (я неслабо так удивлён). А значит, ему есть о чём рассказать. Курс я посмотрел целиком, и оно того стоило. Узнал оттуда о большом количестве команд, которые до этого совсем не встречал. Собственно, данный пост &amp;ndash; это подборка различных советов и трюков, которые я почерпнул, пока смотрел этот курс и лазил по документации в процессе.</description>
+    </item>
+    
+    <item>
+      <title>Как исправить говна в OS X, перестать беспокоиться и начать жить</title>
+      <link>https://schfkt.github.io/blog/fix-osx/</link>
+      <pubDate>Sun, 30 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://schfkt.github.io/blog/fix-osx/</guid>
+      <description>По-умолчанию, в OS X (подразумевается Yosemite) присутствуют некоторые особые &amp;ldquo;фичи&amp;rdquo;, которые немного мешают жить. Например, поехавший скролл, который появляется только тогда, когда скроллишь. Если зажать какую-нибудь клавишу (n, k и т.д.), то вылезает какое-то меню около курсора. Это вместо того, чтобы просто непрерывно вводить этот символ в поле ввода. Список можно продолжать до бесконечности. Хорошо хоть, что все эти &amp;ldquo;фичи&amp;rdquo; можно исправить. Чему данный пост и посвящён.
+Возвращаем на место скроллбар Для этого нужно пульнуть в терминале следующую команду:</description>
+    </item>
+    
+    <item>
+      <title>Vim, ctags и Ruby</title>
+      <link>https://schfkt.github.io/blog/vim-ctags-and-ruby/</link>
+      <pubDate>Sun, 28 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://schfkt.github.io/blog/vim-ctags-and-ruby/</guid>
+      <description>Посмотрел недавно скринкаст с Aaron Patterson (который @tenderlove). Понравилось, как он владеет vim&amp;rsquo;ом. Больше всего запомнилось то, как Aaron шарился по документации прямо в исходниках гемов. И вот для быстрого поиска нужного метода он как раз использовал встроенную в vim поддержку ctags. Я же этой фичей вообще не пользовался, хотя и знал о ней. Решил, что надо бы попробовать, и не пожалел.
+Установка и настройка ctags В OS X из коробки есть какой-то бинарник ctags, но он неправославный.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,284 @@
+<html>
+
+<head>
+  <title>Vim, ctags и Ruby</title>
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="/css/bundle.css">
+</head>
+
+
+<body>
+  <div class="bg-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-7 px-0">
+        <nav class="py-2 justify-content-start">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/">Home</a>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="container">
+    <div class="row justify-content-center pb-4">
+      <div class="col-md-12 col-lg-7">
+        
+
+<article class="post">
+  <div class="post-header">
+    <h1 class="post-title">Vim, ctags и Ruby</h1>
+    <div class="post-meta">June 28, 2015</div>
+    <div class="post-meta">5 minutes to read</div>
+  </div>
+
+  
+
+<p>Посмотрел недавно <a href="http://www.pluralsight.com/courses/play-by-play-aaron-patterson">скринкаст</a>
+с Aaron Patterson (который @tenderlove). Понравилось, как он владеет vim&rsquo;ом.
+Больше всего запомнилось то, как Aaron шарился по документации прямо в исходниках
+гемов. И вот для быстрого поиска нужного метода он как раз использовал встроенную
+в vim поддержку ctags. Я же этой фичей вообще не пользовался, хотя и знал о ней.
+Решил, что надо бы попробовать, и не пожалел.</p>
+
+<h1 id="установка-и-настройка-ctags">Установка и настройка ctags</h1>
+
+<p>В OS X из коробки есть какой-то бинарник ctags, но он неправославный.
+Нам же нужен exuberant ctags. Накатим его при помощи homebrew и возрадуемся:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ brew install ctags</code></pre></div>
+
+<p>И дабы убедиться, что ctags стал православным, запустим команду:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ ctags --version
+Exuberant Ctags <span class="m">5</span>.8, Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">1996</span>-2009 Darren Hiebert
+  Compiled: Mar <span class="m">16</span> <span class="m">2015</span>, <span class="m">23</span>:48:18
+  Addresses: &lt;dhiebert@users.sourceforge.net&gt;, http://ctags.sourceforge.net
+  Optional compiled features: +wildcards, +regex</code></pre></div>
+
+<p>Для ctags можно создать глобальный конфиг, чтобы постоянно не указывать гору опций
+при его запуске. Положить его нужно в <code>~/.ctags</code>:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ cat ~/.ctags
+--recurse<span class="o">=</span>yes
+--tag-relative<span class="o">=</span>yes
+--fields<span class="o">=</span>+l
+--languages<span class="o">=</span>ruby,javascript
+--exclude<span class="o">=</span>.git
+--exclude<span class="o">=</span>node_modules
+--exclude<span class="o">=</span>log
+--exclude<span class="o">=</span>*.min.js</code></pre></div>
+
+<p>Oписание опций:</p>
+
+<ul>
+<li><code>--recurse=yes</code> &ndash; указывает, что при поиске файлов для сканирования заданную
+директорию нужно обходить рекурсивно.</li>
+<li><code>--tag-relative=yes</code> &ndash; в тэг-файле пути к просканированным файлам будут указываться
+относительно этого самого тэг-файла.</li>
+<li><code>--fields=+l</code> &ndash; необходимо для плагина YouCompleteMe. Об этом чуть ниже.</li>
+<li><code>--languages=ruby,javascript</code> &ndash; теги для каких языков генерировать. Список всех
+поддерживаемых языков можно получить, запустив <code>ctags --list-languages</code>.</li>
+<li><code>--exclude</code> &ndash; какие файлы/папки не сканировать.</li>
+</ul>
+
+<h1 id="используем-ctags-с-vim-ом">Используем ctags с vim&rsquo;ом</h1>
+
+<p>Чтобы vim&rsquo;у откуда было брать идентификаторы (они же тэги),
+нужно сперва запустить ctags, который в свою очередь сгенерирует файл с ними:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ ctags
+$ ll tags
+-rw-r--r--  <span class="m">1</span> schfkt  staff    13K <span class="m">28</span> июн <span class="m">22</span>:05 tags</code></pre></div>
+
+<p>По-дефолту, vim как раз ищет тэги в файле tags в директории, в которой он запущен.
+Поэтому больше ничего конфигурировать не нужно и можно опробовать на деле
+следующие хоткеи/команды в vim&rsquo;е:</p>
+
+<ul>
+<li><code>CTRL-]</code> &ndash; перейти к определению идентификатора, на котором сейчас расположен
+курсор.</li>
+<li><code>g]</code> &ndash; вывести список всех мест, где находится идентификатор под курсором.</li>
+<li><code>CTRL+t</code> &ndash; вернуться назад (после перехода по тэгу).</li>
+<li><code>:tag destroy</code> &ndash; найти ключевое слово destroy. Аналогично тому, что делает <code>CTRL+]</code>.</li>
+</ul>
+
+<p>Мне хватает этих команд, но на самом деле их гораздо больше. Полный список можно
+глянуть в хелпе (<code>:h tags</code>).</p>
+
+<p>Важный момент: после внесения изменений в код, ctags нужно запускать снова. Чтобы
+новые идентификаторы добавились в tags-файл. Делать это руками каждый раз
+утомительно. Но автоматизировать процесс можно, добавив следующую строчку в
+.vimrc:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">au BufWritePost *.js,*.rb silent! !ctags <span class="m">2</span>&gt; /dev/null <span class="p">&amp;</span></code></pre></div>
+
+<p>Таким образом Vim, после каждой записи в файл с расширением rb или js, будет
+запускать команду <code>ctags 2&gt; /dev/null &amp;</code>.</p>
+
+<h1 id="примеры-использования-команд-в-vim-е">Примеры использования команд в vim&rsquo;е</h1>
+
+<p>Описание всех этих команд на словах может быть не совсем ясно. Особенно тому,
+кто и не знал об их существовании. Поэтому далее я приведу парочку наглядных
+примеров с экраноснимками.</p>
+
+<p>Например, сейчас мы находимся в каком-то спеке, курсор расположен на <code>User</code>:
+<img src="images/ctags-vim-before-jump.png" alt="переход к идентификатору под курсором" /></p>
+
+<p>Жмём <code>CTRL+]</code> и оказываемся в этой самой модельке <code>User</code>.
+<img src="images/ctags-vim-after-jump.png" alt="результат перехода" /></p>
+
+<p>Чтобы вернуться назад в спек, можно воспользоваться комбинацией <code>CTRL+t</code>.
+Аналогично, к этой модельке можно перейти при помощи команды <code>:tag User</code>.</p>
+
+<p><code>g]</code> команда выводит список всех мест где найден идентификатор, расположенный
+под курсором:
+<img src="images/vim-ctags-g-bracket.png" alt="список всех мест с идентификатором" /></p>
+
+<h1 id="интеграция-с-другими-плагинами">Интеграция с другими плагинами</h1>
+
+<h2 id="youcompleteme">YouCompleteMe</h2>
+
+<p>Этот плагин может собирать идентификаторы из файлов с тэгами и использовать
+эти идентификаторы для автодополнения. Чтобы воспользоваться фичей, необходимо:</p>
+
+<ul>
+<li>При генерации тегов запускать ctags с параметром <code>--fields=+l</code></li>
+<li>Включить фичу, добавив строчку в .vimrc:</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nx">g</span><span class="p">:</span><span class="nx">ycm_collect_identifiers_from_tags_files</span> <span class="p">=</span> <span class="m">1</span></code></pre></div>
+
+<h2 id="ctrlp-vim">ctrlp.vim</h2>
+
+<p>CtrlP &ndash; это такой прикольный плагин, при помощи которого можно быстро переходить
+к чему угодно (файлам, буферам, тэгам etc.). Он выводит список чего-то, и этот
+список можно фильтровать, начиная печатать текст. Из коробки плагин умеет выводить
+тэги и позволяет переходить к ним. Чтобы вывести список тэгов, нужно пульнуть
+<code>:CtrlPTag</code>. Снизу появится окошко с тэгами:
+<img src="images/ctags-vim-ctrlp.png" alt="CtrlPTag" /></p>
+
+<p>На скриншоте видно, что список тэгов отфильтрован по <code>create_table</code>. Для перехода
+по тэгу достаточно нажать <code>Enter</code>. У меня для удобства команда повешена на
+хоткей:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">t</span> <span class="p">:</span><span class="nx">CtrlPTag</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span></code></pre></div>
+
+<h2 id="tagbar">Tagbar</h2>
+
+<p>Экраноснимок лучше тысячи слов:
+<img src="images/vim-ctags-tagbar.png" alt="Tagbar" /></p>
+
+<p>Вот эта панелька справа и есть Tagbar. Он собирает идентификаторы и отображает
+их относительно классов, модулей etc. Довольно удобно. К идентификатору можно
+также перейти, достаточно нажать <code>Enter</code>. При этом Tagbar не нуждается в
+заранее сгенерированном файле с тэгами. Он генерирует его сам на лету и хранит
+в памяти.</p>
+
+<h1 id="всякие-годные-штуки-для-ruby">Всякие годные штуки для ruby</h1>
+
+<p>Братишка Tim Pope угорел и навернул достаточное количество всяких гемов и плагинов,
+которые сильно упрощают работу с ruby в vim&rsquo;е. О них и пойдёт дальнейшее
+повествование.</p>
+
+<h2 id="генерируем-тэги-для-stdlib-и-гемов">Генерируем тэги для stdlib и гемов</h2>
+
+<p>Если вы, как и я, используете rbenv вместе с плагином ruby-build, то можно
+дополнить их другим плагином. После установки новой версии ruby при помощи ruby-build,
+он будет автоматически генерировать тэги для стандартной библиотеки этих самых ruby.
+Выполним следующие шаги:</p>
+
+<ul>
+<li>Устанавливаем <a href="https://github.com/tpope/rbenv-ctags">плагин для rbenv</a>:</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ git clone git://github.com/tpope/rbenv-ctags.git <span class="se">\
+</span><span class="se"></span>    ~/.rbenv/plugins/rbenv-ctags</code></pre></div>
+
+<ul>
+<li>Запускаем <code>rbenv ctags</code>, чтобы сгенерировать тэги для активной версии ruby. Или
+же <code>rbenv ctags 2.2.0</code>, чтобы сгенерировать тэги для версии 2.2.0. В
+дальнейшем тэги будут генерироваться автоматически после каждой установки
+новой версии ruby.</li>
+</ul>
+
+<p>Осталось автоматизировать генерацию тэгов для гемов. Для этого вышеупомянутый
+Tim Pope напилил <a href="https://github.com/tpope/gem-ctags">другой гем</a>.</p>
+
+<ul>
+<li>Устанавливам гем:</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ gem install gem-ctags</code></pre></div>
+
+<ul>
+<li>Генерируем тэги для уже установленных гемов:</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ gem ctags</code></pre></div>
+
+<p>Делать всё это каждый раз руками после установки новой версии ruby не труъ.
+Автоматизируем процесс при помощи плагина
+<a href="https://github.com/sstephenson/rbenv-default-gems">rbenv-default-gems</a>, который
+как раз и занимается накатыванием заданных гемов после установки ruby.</p>
+
+<ul>
+<li>Установим плагин:</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ git clone git@github.com:sstephenson/rbenv-default-gems.git <span class="se">\
+</span><span class="se"></span>    ~/.rbenv/plugins/rbenv-default-gems</code></pre></div>
+
+<ul>
+<li>Создадим для него конфиг со следующим содержимым:</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ cat ~/.rbenv/default-gems
+gem-ctags</code></pre></div>
+
+<p>Ну вот, теперь тэги у нас будут генерироваться автоматически как для стандартной
+библиотеки ruby, так и для устанавливаемых гемов. Осталось заставить vim использовать
+эти тэги.</p>
+
+<h2 id="прикручиваем-всё-это-дело-к-vim-у">Прикручиваем всё это дело к vim&rsquo;у</h2>
+
+<p>Чтобы vim начал использовать все эти тэги, которые мы нагенерим для ruby, нужно
+накатить парочку плагинов за авторством того же самого Tim Pope.</p>
+
+<p>Первым делом установим плагин <a href="https://github.com/tpope/vim-rbenv">vim-rbenv</a>.
+Этот плагин указывает vim&rsquo;у путь до используемой версии ruby и до файла с тэгами
+для неё. С этим плагином может возникнуть проблема, если вы используется в
+качестве шелла zsh. Vim попросту будет использовать всегда системную версию
+ruby вместо выбранной. На странице плагина есть пара вариантов решения этой проблемы.
+Мне же помогло следующее:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sudo mv /etc/<span class="o">{</span>zshenv,zshrc<span class="o">}</span></code></pre></div>
+
+<p>После рестарта шелла проблема исчезла.</p>
+
+<p>Теперь установим плагин <a href="https://github.com/tpope/vim-bundler">vim-bundler</a>. Он
+будет указывать vim&rsquo;у пути до тэгов от гемов, указанных в соответствующем Gemfile.</p>
+
+<h1 id="заключение">Заключение</h1>
+
+<p>Вот, собственно, и всё. Теперь у вас vim&rsquo;е должнен быть сносный автокомплит, который
+дополняет идентификаторы и из stdlib, и из гемов, и из вашего кода. Да и все эти
+идентификаторы можно будет быстро и удобно искать. Картиночка напоследок:
+<img src="images/vim-zbs-narm.png" alt="vim-zbs-narm" /></p>
+
+</article>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
