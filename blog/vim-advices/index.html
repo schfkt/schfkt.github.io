@@ -258,21 +258,21 @@ VIM&rdquo;</em>. Но не найдёт ничего в строке: <em>&ldquo
 <li>Со строки 1 по строку 100:</li>
 </ul>
 
-<p><div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="m">1</span><span class="p">,</span><span class="m">100</span><span class="nx">s</span><span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>light</p>
+<p><div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="m">1</span><span class="p">,</span><span class="m">100</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>light</p>
 
 <ul>
 <li>Строки относительно текущей. В данном случае замена будет сделана на текущей
 строке, на 10 строках выше и на 20 ниже:</li>
 </ul>
 
-<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="m">-10</span><span class="p">,+</span><span class="m">20</span><span class="nx">s</span><span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="m">-10</span><span class="p">,+</span><span class="m">20</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
 
 <ul>
 <li>Начиная с текущей строки. Чтобы заменить на текущей строке и на 10 строках
 ниже неё:</li>
 </ul>
 
-<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span>.<span class="p">,+</span><span class="m">10</span><span class="nx">s</span><span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span>.<span class="p">,+</span><span class="m">10</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
 
 <ul>
 <li>С какой-либо строки и до конца файла:</li>
@@ -309,7 +309,7 @@ VIM&rdquo;</em>. Но не найдёт ничего в строке: <em>&ldquo
 
 <p>Вооружившись полученными знаниями, я навернул себе полезный маппинг:</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">Leader</span><span class="p">&gt;</span><span class="nx">r</span> <span class="p">:</span>.<span class="p">,</span>$<span class="nx">s</span><span class="sr">/\&lt;&lt;C-r&gt;&lt;C-w&gt;\&gt;/</span>/<span class="nx">gc</span><span class="p">&lt;</span><span class="nx">left</span><span class="p">&gt;&lt;</span><span class="nx">left</span><span class="p">&gt;&lt;</span><span class="nx">left</span><span class="p">&gt;</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">Leader</span><span class="p">&gt;</span><span class="nx">r</span> :.<span class="p">,</span>$<span class="nx">s</span><span class="sr">/\&lt;&lt;C-r&gt;&lt;C-w&gt;\&gt;/</span>/<span class="nx">gc</span><span class="p">&lt;</span><span class="nx">left</span><span class="p">&gt;&lt;</span><span class="nx">left</span><span class="p">&gt;&lt;</span><span class="nx">left</span><span class="p">&gt;</span></code></pre></div>
 
 <p>Это заклинание заменяет слово, на котором расположен курсор, на то, что вы
 укажете. Делает оно это начиная с текущей строчки и до конца файла. При этом
@@ -329,7 +329,7 @@ VIM&rdquo;</em>. Но не найдёт ничего в строке: <em>&ldquo
 <p>А теперь перейдём к команде <code>:g</code>. Она позволяет выполнить какую-либо команду
 для строк, которые будут найдены заданным поисковым запросом. Например:</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">g</span> <span class="sr">/^\s/</span> <span class="p">:</span><span class="nx">center</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">g</span> <span class="sr">/^\s/</span> :<span class="nx">center</span></code></pre></div>
 
 <p>В данном случае, vim отцентрирует текст в строках, которые содержат хотя бы
 один пробел в начале.  Как говорится, лучше один раз увидеть:</p>
