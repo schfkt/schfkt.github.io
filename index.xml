@@ -6,10 +6,21 @@
     <description>Recent content on schfkt&#39;s website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Jun 2019 20:02:49 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 15 Oct 2019 22:59:57 +0300</lastBuildDate>
     
 	<atom:link href="https://schfkt.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vim cheatsheet</title>
+      <link>https://schfkt.github.io/blog/vim-cheatsheet/</link>
+      <pubDate>Tue, 15 Oct 2019 22:59:57 +0300</pubDate>
+      
+      <guid>https://schfkt.github.io/blog/vim-cheatsheet/</guid>
+      <description> I&amp;rsquo;ve been using Vim heavily in the last two month. In order to not waste a lot of time looking up a certain feature or key combination, I came up with the idea to create a cheatsheet page for that. The one that I&amp;rsquo;ll keep updated.
+So here it is. I hope you&amp;rsquo;ll find something useful here too ;)
+Vim CLI  vim +PluginInstall open Vim and run command  Tabs  gt go to the next tab gT go to the previous tab &amp;lt;c-w&amp;gt; T open current buffer in the new tab :tabedit open file for editing in a new tab  Diff  :diffget obtain changes from the other file :diffput apply changes to the other file  Marks Folds  zM zm zR zr zC zc zO zo  Positioning in the file  zt position the current line in the top of the window zz position the current line in the middle of the window zb position the current line in the bottom of the window  Plugins CtrlP  &amp;lt;c-t&amp;gt; open file in a tab &amp;lt;c-d&amp;gt; switch to search by file name only  CtrlSF  &amp;lt;c-c&amp;gt; stop the search t open file in a new tab T open file in a new tab, but keep focus on CtrlSF M switch view mode (horizontal or vertical)  </description>
+    </item>
     
     <item>
       <title>About</title>
