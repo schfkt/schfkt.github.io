@@ -45,24 +45,22 @@
   <div class="post-header">
     <h1 class="post-title">Vim cheatsheet</h1>
     <div class="post-meta">October 15, 2019</div>
-    <div class="post-meta">1 minutes to read</div>
+    <div class="post-meta">2 minutes to read</div>
   </div>
 
   
 
-<p>I&rsquo;ve been using Vim heavily in the last two month. In order to not waste a lot of time looking up a certain feature or key combination, I came up with the idea to create a cheatsheet page for that. The one that I&rsquo;ll keep updated.</p>
+<p>I&rsquo;ve been using Vim heavily in the last two month. In order to not waste a lot of time looking up a certain feature or key combination, I came up with the idea to create a cheatsheet page for that.</p>
 
 <p>So here it is. I hope you&rsquo;ll find something useful here too ;)</p>
 
-<h1 id="vim">Vim</h1>
-
-<h2 id="cli">CLI</h2>
+<h1 id="cli">CLI</h1>
 
 <ul>
 <li><code>vim +PluginInstall</code> open Vim and run command</li>
 </ul>
 
-<h2 id="tabs">Tabs</h2>
+<h1 id="tabs">Tabs</h1>
 
 <ul>
 <li><code>gt</code> go to the next tab</li>
@@ -71,18 +69,20 @@
 <li><code>:tabedit</code> open file for editing in a new tab</li>
 </ul>
 
-<h2 id="diff">Diff</h2>
+<h1 id="diff">Diff</h1>
 
 <ul>
 <li><code>:diffget</code> obtain changes from the other file</li>
 <li><code>:diffput</code> apply changes to the other file</li>
 </ul>
 
-<h2 id="marks">Marks</h2>
+<h1 id="marks">Marks</h1>
 
-<h2 id="folds">Folds</h2>
+<h1 id="folds">Folds</h1>
 
 <ul>
+<li><code>zk</code> go to the previous fold</li>
+<li><code>zj</code> go to the next fold</li>
 <li><code>zM</code></li>
 <li><code>zm</code></li>
 <li><code>zR</code></li>
@@ -93,30 +93,41 @@
 <li><code>zo</code></li>
 </ul>
 
-<h2 id="positioning-in-the-file">Positioning in the file</h2>
+<h1 id="positioning-in-the-file">Positioning in the file</h1>
 
 <ul>
-<li><code>zt</code> position the current line in the top of the window</li>
-<li><code>zz</code> position the current line in the middle of the window</li>
-<li><code>zb</code> position the current line in the bottom of the window</li>
+<li>Position the current line in:
+
+<ul>
+<li><code>zt</code> the top of the window</li>
+<li><code>zz</code> the middle of the window</li>
+<li><code>zb</code> the bottom of the window</li>
+</ul></li>
 </ul>
 
-<h1 id="plugins">Plugins</h1>
-
-<h2 id="ctrlp">CtrlP</h2>
+<h1 id="ctrlp">CtrlP</h1>
 
 <ul>
 <li><code>&lt;c-t&gt;</code> open file in a tab</li>
+<li><code>&lt;c-v&gt;</code> open file in a vertical split</li>
+<li><code>&lt;c-x&gt;</code> open file in a horizontal split</li>
 <li><code>&lt;c-d&gt;</code> switch to search by file name only</li>
 </ul>
 
-<h2 id="ctrlsf">CtrlSF</h2>
+<h1 id="ctrlsf">CtrlSF</h1>
 
 <ul>
 <li><code>&lt;c-c&gt;</code> stop the search</li>
 <li><code>t</code> open file in a new tab</li>
 <li><code>T</code> open file in a new tab, but keep focus on CtrlSF</li>
 <li><code>M</code> switch view mode (horizontal or vertical)</li>
+</ul>
+
+<h1 id="vim-signify">vim-signify</h1>
+
+<ul>
+<li><code>[c</code> go to the previous change</li>
+<li><code>]c</code> go to the next change</li>
 </ul>
 
 </article>
