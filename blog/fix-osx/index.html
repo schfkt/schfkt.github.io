@@ -48,149 +48,90 @@
     <div class="post-meta">3 minutes to read</div>
   </div>
 
-  
-
-<p>По-умолчанию, в OS X (подразумевается Yosemite) присутствуют некоторые особые
+  <p>По-умолчанию, в OS X (подразумевается Yosemite) присутствуют некоторые особые
 &ldquo;фичи&rdquo;, которые немного мешают жить. Например, поехавший скролл, который
 появляется только тогда, когда скроллишь. Если зажать какую-нибудь клавишу
 (n, k и т.д.), то вылезает какое-то меню около курсора. Это вместо того,
 чтобы просто непрерывно вводить этот символ в поле ввода. Список можно
 продолжать до бесконечности. Хорошо хоть, что все эти &ldquo;фичи&rdquo; можно исправить.
 Чему данный пост и посвящён.</p>
-
 <h1 id="возвращаем-на-место-скроллбар">Возвращаем на место скроллбар</h1>
-
 <p>Для этого нужно пульнуть в терминале следующую команду:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write NSGlobalDomain AppleShowScrollBars -string <span class="s2">&#34;Always&#34;</span></code></pre></div>
-
 <p>Результат, правда, применится не сразу ко всем приложениям, а только к тем,
 которые будут запущены после выполнения команды. Или это мне так показалось.
 В любом случае, после рестарта OS X скроллбар будет везде и всегда виден.
 Пример:</p>
-
-<p><img src="images/finder-scrollbars.png" alt="scrollbars" /></p>
-
+<p><img src="images/finder-scrollbars.png" alt="scrollbars"></p>
 <p>Возможные значения у этой опции следующие:</p>
-
 <ul>
 <li>WhenScrolling</li>
 <li>Automatic</li>
 <li>Always</li>
 </ul>
-
 <p>Так что, при необходимости, можно всё вернуть как было.</p>
-
 <h1 id="включаем-повтор-клавиш">Включаем повтор клавиш</h1>
-
 <p>Собственно, команда для включения:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false</code></pre></div>
-
 <p>Также можно задать скорость повтора:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write NSGlobalDomain KeyRepeat -int <span class="m">2</span></code></pre></div>
-
 <p>Если указать 0, то повтор будет уж очень быстрый. Я поэкспериментировал и
 подобрал значение 2. С ним выглядит оно так:</p>
-
-<p><img src="images/key-repeat.gif" alt="key-repeat" /></p>
-
+<p><img src="images/key-repeat.gif" alt="key-repeat"></p>
 <h1 id="исправляем-рендеринг-шрифтов-на-внешних-дисплеях">Исправляем рендеринг шрифтов на внешних дисплеях</h1>
-
 <p>Кровь заструилась из глаз моих, когда я первый раз подключил внешний монитор к
 макбуку. Шрифты были настолько адово шероховатые, что работать было совсем
 невозможно. Решилась проблема при помощи следующей настройки:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write NSGlobalDomain AppleFontSmoothing -int <span class="m">2</span></code></pre></div>
-
 <h1 id="отображение-абсолютного-пути-к-текущей-папке-в-заголовке-окна">Отображение абсолютного пути к текущей папке в заголовке окна</h1>
-
 <p>Включается следующей командой:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write com.apple.finder _FXShowPosixPathInTitle -bool true</code></pre></div>
-
 <p>Результат:</p>
-
-<p><img src="images/posix-path.png" alt="posix-path" /></p>
-
+<p><img src="images/posix-path.png" alt="posix-path"></p>
 <h1 id="задаём-вид-отображения-по-умолчанию">Задаём вид отображения по-умолчанию</h1>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write com.apple.finder FXPreferredViewStyle -string <span class="s2">&#34;Nlsv&#34;</span></code></pre></div>
-
 <p>В качестве значения можно указать одну из следующих строк:</p>
-
 <ul>
 <li>&ldquo;icnv&rdquo; - значки</li>
 <li>&ldquo;Nlsv&rdquo; - список</li>
 <li>&ldquo;clmv&rdquo; - колонки</li>
 <li>&ldquo;Flwv&rdquo; - обложка</li>
 </ul>
-
 <p>Чтобы было понятно, какой режим что из себя представляет, на следующей картинке
 можно глянуть, какая из кнопок в UI Finder&rsquo;а включает какой режим:</p>
-
-<p><img src="images/view-types.png" alt="view-types" /></p>
-
+<p><img src="images/view-types.png" alt="view-types"></p>
 <h1 id="отключаем-предупреждение-при-смене-расширения-у-файла">Отключаем предупреждение при смене расширения у файла</h1>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false</code></pre></div>
-
 <h1 id="включаем-отображение-расширения-у-всех-файлов">Включаем отображение расширения у всех файлов</h1>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write NSGlobalDomain AppleShowAllExtensions -bool true</code></pre></div>
-
 <h1 id="отключаем-прозрачность-у-элементов-интерфейса-menu-bar-и-прочее">Отключаем прозрачность у элементов интерфейса (menu bar и прочее)</h1>
-
 <p>Совсем бесполезная хрень, которая к тому же только попусту напрягает
 графический адаптер. Отключаем:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write com.apple.universalaccess reduceTransparency -bool true</code></pre></div>
-
 <h1 id="убираем-тени-на-скриншотах">Убираем тени на скриншотах</h1>
-
 <p>Тоже фигня бесполезная:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write com.apple.screencapture disable-shadow -bool true</code></pre></div>
-
 <h1 id="отключаем-переход-назад-по-истории-в-хроме-при-помощи-свайпа-влево">Отключаем переход назад по истории в хроме при помощи свайпа влево</h1>
-
 <p>Иногда оно может быть удобно. Но обычно я этот жест делаю случайно. Выключаем:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false</code></pre></div>
-
 <h1 id="небольшие-фиксы-для-time-machine">Небольшие фиксы для Time Machine</h1>
-
 <p>Не нужно предлагать использовать для бэкапов внешние диски:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true</code></pre></div>
-
 <p>Выключаем локальные бэкапы (лол, apple, какой вообще в них смысл?). Да и место
 только зря занимает:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo tmutil disablelocal</code></pre></div>
-
 <h1 id="чаще-проверяем-наличие-обновлений">Чаще проверяем наличие обновлений</h1>
-
 <p>В данном случае, каждый день:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write com.apple.SoftwareUpdate ScheduleFrequency -int <span class="m">1</span></code></pre></div>
-
-<h1 id="улучшаем-качество-звука-в-blueetoth-гарнитурах-наушниках">Улучшаем качество звука в blueetoth гарнитурах / наушниках</h1>
-
+<h1 id="улучшаем-качество-звука-в-blueetoth-гарнитурах--наушниках">Улучшаем качество звука в blueetoth гарнитурах / наушниках</h1>
 <p>Сам пока что не проверял, ибо наушники поломались:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">defaults write com.apple.BluetoothAudioAgent <span class="s2">&#34;Apple Bitpool Min (editable)&#34;</span> -int <span class="m">40</span></code></pre></div>
-
 <h1 id="полезные-ссылки">Полезные ссылки</h1>
-
 <p>Почти все эти команды я нашёл в скриптах, расположенных по следующим ссылкам:</p>
-
 <ul>
 <li><a href="https://github.com/mathiasbynens/dotfiles/blob/master/.osx">https://github.com/mathiasbynens/dotfiles/blob/master/.osx</a></li>
 <li><a href="https://gist.github.com/brandonb927/3195465">https://gist.github.com/brandonb927/3195465</a></li>
 </ul>
-
 <p>Там же есть и множество других советов. Которые сюда не попали, ибо я просто не
 стал их использовать.</p>
 

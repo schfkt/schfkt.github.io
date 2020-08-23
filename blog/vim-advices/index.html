@@ -48,9 +48,7 @@
     <div class="post-meta">10 minutes to read</div>
   </div>
 
-  
-
-<p>Совершенно случайно наткнулся в интернетах на такую замечательную вещь:
+  <p>Совершенно случайно наткнулся в интернетах на такую замечательную вещь:
 <a href="http://shop.oreilly.com/product/110000687.do">Mastering vim</a>. Это небольшой
 (3,5 часа примерно) видео-курс по vim за авторством Damian Conway. По его
 словам, он угорает в vi/vim уже 30 лет (я неслабо так удивлён). А значит, ему
@@ -58,9 +56,7 @@
 оттуда о большом количестве команд, которые до этого совсем не встречал.
 Собственно, данный пост &ndash; это подборка различных советов и трюков, которые я
 почерпнул, пока смотрел этот курс и лазил по документации в процессе.</p>
-
 <h1 id="help">Help</h1>
-
 <p>Многие знают о команде <code>:help</code> (или короче: <code>:h</code>). Она невероятно полезная, ибо
 что в документации самого vim, что в документации сторонних плагинов обычно всё
 достаточно подробно расписано. Что какая команда как делает, какая настройка за
@@ -69,125 +65,96 @@
 здесь на помощь приходит <code>:helpgrep</code> (<code>:helpg</code>). Она же выводит результаты
 поиска в Quickfix список. По этим результатам затем можно достаточно удобно
 переходить при помощи следующих команд:</p>
-
 <ul>
 <li><code>:cnext</code> &ndash; перейти к следующей записи в Quickfix списке</li>
 <li><code>:cprev</code> &ndash; перейти к предыдущей записи</li>
 <li><code>:cfirst</code> &ndash; перейти к самой первой записи</li>
 <li><code>:clast</code> &ndash; перейти к самой последней записи</li>
 </ul>
-
 <p>Разумеется, если результатов поиска достаточно много, то вводить эти команды
 может стать утомительно. И здесь на помощь приходит плагин
 <a href="https://github.com/tpope/vim-unimpaired">vim-unimpaired</a> от вездесущего Tim
 Pope, плагины которого уже заполонили половину моего vimrc. Этот плагин
 добавляет большое количество полезных сочетаний клавиш. И среди них есть те,
 которые упрощают работу с Quickfix списком. Вот они:</p>
-
 <ul>
 <li><code>[q</code> &ndash; <code>:cprev</code></li>
 <li><code>]q</code> &ndash; <code>:cnext</code></li>
 <li><code>[Q</code> &ndash; <code>:cfirst</code></li>
 <li><code>]Q</code> &ndash; <code>:clast</code></li>
 </ul>
-
 <p>К тому же, их достаточно легко запомнить. Особенность всех сочетаний, которые
 добавляет плагин, в том, что они так или иначе используют <code>[</code> или <code>]</code>. За
 подробностями го в <code>:h unimpaired</code>.</p>
-
 <p>И напоследок, два поисковых запроса, при помощи которых можно найти множество
 интересных команд для normal и insert mode:</p>
-
 <ul>
 <li><code>:h normal-index</code> &ndash; откроет страницу хелпа, на которой перечислены все
 команды, доступные в normal mode</li>
 <li><code>:h insert-index</code> &ndash; аналогично, но для insert mode</li>
 </ul>
-
 <h1 id="история-изменений">История изменений</h1>
-
 <p>Оказывается, история изменений в vim&rsquo;е не линейная, а древовидная. А это
 значит, что все сделанные измения можно восстановить. И помимо команд <code>u</code> и
 <code>ctrl+r</code> присутствуют другие, которые как раз и позволяют перемещаться по
 ветвям дерева, представляющего историю изменений. Рассмотрим пример:</p>
-
 <ul>
 <li>Создали новый файл</li>
-<li>Добавили строку: <em>&ldquo;Как я тебе это чистить буду? Вилкой что ли?!&rdquo;</em></li>
-<li>Добавили ещё строку: <em>&ldquo;Чисти, чисти, чисти. Раз-раз-раз.&rdquo;</em></li>
+<li>Добавили строку: <em>&ldquo;Как я тебе это чистить буду? Вилкой что ли?!&quot;</em></li>
+<li>Добавили ещё строку: <em>&ldquo;Чисти, чисти, чисти. Раз-раз-раз.&quot;</em></li>
 <li>Удалили эту сроку</li>
-<li>Добавили вместо неё строку: <em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&rdquo;</em></li>
+<li>Добавили вместо неё строку: <em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&quot;</em></li>
 </ul>
-
 <p>Если воспользоваться командами <code>u</code> и <code>ctrl-r</code> в normal mode, то мы сможем
 перемешаться в истории только по таким изменениям:</p>
-
 <ul>
-<li><em>&ldquo;Как я тебе это чистить буду? Вилкой что ли?!&rdquo;</em></li>
-<li><em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&rdquo;</em></li>
+<li><em>&ldquo;Как я тебе это чистить буду? Вилкой что ли?!&quot;</em></li>
+<li><em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&quot;</em></li>
 </ul>
-
 <p>Но мы не сможем вернуться на тот момент, когда была добавлена строка <em>&ldquo;Чисти,
-чисти, чисти. Раз-раз-раз.&rdquo;</em> Для этого существуют другие команды:</p>
-
+чисти, чисти. Раз-раз-раз.&quot;</em> Для этого существуют другие команды:</p>
 <ul>
 <li><code>g-</code> &ndash; переключиться на самое последнее измение в предыдущей ветви истории</li>
 <li><code>g+</code> &ndash; переключиться на самое последнее измение в следующей ветви истории</li>
 </ul>
-
 <p>Другими словами, если сейчас мы находимся на том моменте, когда была добавлена
-строка <em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&rdquo;</em>, то при помощи команды
+строка <em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&quot;</em>, то при помощи команды
 <code>g-</code> мы можем вернуться к тому моменту, когда была добавлена строка <em>&ldquo;Чисти,
-чисти, чисти. Раз-раз-раз.&rdquo;</em>. А вернуться обратно уже можем при помощи <code>g+</code>.</p>
-
+чисти, чисти. Раз-раз-раз.&quot;</em>. А вернуться обратно уже можем при помощи <code>g+</code>.</p>
 <p>Но всё это как-то сложно и к тому же не всегда может быть очевидно, а к какому
 вообще моменту истории файла мы перейдём в итоге. Разумеется, для упрощения
 жизни существует крутой плагин: <a href="https://github.com/sjl/gundo.vim">gundo.vim</a>.
 Он визулизирует дерево изменений файла и показывает в виде диффа то, что было
 изменено на конкретном шаге. Пример:</p>
-
-<p><img src="images/gundo.vim.png" alt="gundo.vim" /></p>
-
+<p><img src="images/gundo.vim.png" alt="gundo.vim"></p>
 <p>Подробнее про историю изменений и про плагин gundo.vim можно глянуть в этом
 <a href="http://vimcasts.org/episodes/undo-branching-and-gundo-vim/">скринкасте</a>. Там,
 помимо всего прочего, есть интерактивная иллюстрация того, как выглядит история
 изменений.</p>
-
 <p>Для истории измений существуют различные настройки. Одна из самых полезных &ndash;
 это возможность сохранения истории на диске. Таким образом, она будет доступна
 даже после того, как мы закроем файл или даже сам vim, а потом снова откроем.
 Для включения необходимо добавить следующую строчку в .vimrc:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">set</span> <span class="nx">undofile</span></code></pre></div>
-
 <p>По-умолчанию, файлы с историей изменений хранятся рядом с самими редактируемыми
 файлами.  Что не совсем удобно. Это также настраивается:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">set</span> <span class="nx">undodir</span><span class="p">=~</span><span class="sr">/.vim/</span><span class="nx">undo</span><span class="sr">//</span></code></pre></div>
-
 <p>Стоит обратить внимание на <code>//</code> на конце. С такой настройкой vim будет создавать
 файлы примерно следующего вида:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ ll ~/.vim/undo
--rw-r--r--  <span class="m">1</span> schfkt  staff    55K <span class="m">27</span> сен <span class="m">14</span>:37 %Users%schfkt%code%vim-examples%alice.txt
--rw-r--r--  <span class="m">1</span> schfkt  staff   <span class="m">2</span>,3K <span class="m">27</span> сен <span class="m">14</span>:39 %Users%schfkt%dotfiles%vimrc</code></pre></div>
-
+-rw-r--r--  <span class="m">1</span> schfkt  staff    55K <span class="m">27</span> сен 14:37 %Users%schfkt%code%vim-examples%alice.txt
+-rw-r--r--  <span class="m">1</span> schfkt  staff   2,3K <span class="m">27</span> сен 14:39 %Users%schfkt%dotfiles%vimrc</code></pre></div>
 <p>Это позволит избежать конфликтов для файлов, имеющих одинаковые имена. Т.к.,
 иначе vim (если просто указать какую-то директорию без <code>//</code>) для файла с
 историей будет использовать имя аналогичное имени редактируемого файла.</p>
-
 <p>Ещё одна полезная опция &ndash; это количество записей в истории изменений.
 По-умолчанию задано 1000.  Может быть маловато, поэтому я поменял на 5000:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">set</span> <span class="nx">undolevels</span><span class="p">=</span><span class="m">5000</span></code></pre></div>
-
 <h1 id="поиск-и-замена">Поиск и замена</h1>
-
 <p>До просмотра вышеупомянутого курса я как-то совсем плохо знал, как пользоваться
 заменой в vim&rsquo;е. Не так уж и часто приходилось это делать, поэтому синтаксис
 команды постоянно улетучивался из памяти. Да и более сложные (с регэкспами,
 например) поисковые запросы я практически не использовал.</p>
-
 <p>Самая главная причина, из-за которой с регэкспами в vim&rsquo;е у меня не сразу
 заладилось, лежит в том, что почти все спецсимволы в регэкспах (<code>+</code>, <code>*</code>, <code>?</code> и
 т.д.) нужно экранировать обратным слэшем. Например, если мы хотим найти
@@ -197,106 +164,74 @@ Pope, плагины которого уже заполонили половин
 делать одни и те же повторяющиеся действия). Чтобы решить эту проблему, можно
 добавлять к регэкспам префикс <code>\v</code>.  Если верить документации, он включает
 особый &ndash; <em>&ldquo;very magic&rdquo;</em> &ndash; режим работы регэкспов:</p>
-
 <blockquote>
 <p>Use of &ldquo;\v&rdquo; means that in the pattern after it all ASCII characters except
 &lsquo;0&rsquo;-&lsquo;9&rsquo;, &lsquo;a&rsquo;-&lsquo;z&rsquo;, &lsquo;A&rsquo;-&lsquo;Z&rsquo; and &lsquo;_&rsquo; have a special meaning.  &ldquo;very magic&rdquo;</p>
 </blockquote>
-
 <p>В нём почти все символы считаются специальными. Вот вам два аналогичных
 регэкспа для сравнения:</p>
-
 <ul>
 <li><code>\v(чисти-?){3}</code></li>
 <li><code>\(чисти-\?\)\{3\}</code></li>
 </ul>
-
 <p>Первый, на мой взгляд, куда привычнее. Да и его проще написать.</p>
-
 <p>Ещё одна особенность регэкспов в том, что для границ слова в них используется
 не <code>\b</code>, а другие символы:</p>
-
 <ul>
 <li><code>\&lt;</code> &ndash; для левой границы слова</li>
 <li><code>\&gt;</code> &ndash; для правой</li>
 </ul>
-
 <p>Например, если мы хотим найти отдельное слово <em>&ldquo;VIM&rdquo;</em>, то регэксп для этого будет
 выглядеть так: <code>\&lt;VIM\&gt;</code>. Причём под словом в vim&rsquo;е подразумевается следующее
 (см. <code>:h word</code>):</p>
-
 <blockquote>
 <p>A word consists of a sequence of letters, digits and underscores, or a
 sequence of other non-blank characters, separated with white space (spaces,
 tabs, &lt;EOL&gt;).  This can be changed with the &lsquo;iskeyword&rsquo; option.  An empty line
 is also considered to be a word.</p>
 </blockquote>
-
 <p>А это значит, что регэксп <code>\&lt;VIM\&gt;</code> найдёт <em>&ldquo;VIM&rdquo;</em> в строке: <em>&ldquo;I heard you like
 VIM&rdquo;</em>. Но не найдёт ничего в строке: <em>&ldquo;OMG_LOL_VIM_WOW&rdquo;</em>.</p>
-
 <p>Перейдём к замене. Самый простой пример данной команды выглядит так:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">s</span><span class="sr">/doge/</span><span class="nx">wow</span></code></pre></div>
-
 <p>В этом случае в строке, на которой находится курсор, самый первый фрагмент
 текста <em>&ldquo;doge&rdquo;</em> будет заменён на <em>&ldquo;wow&rdquo;</em>. Именно так. И если в строке имеются
 два таких фрагмента, то второй останется неизменённым. Чтобы заменить все
 найденные фрагменты текста нужно воспользоваться флагом <code>g</code>:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">s</span><span class="sr">/doge/</span><span class="nx">wow</span>/<span class="nx">g</span></code></pre></div>
-
 <p>И разумеется здесь можно использовать регэкспы:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">s</span><span class="sr">/\d\+/</span><span class="p">&lt;</span><span class="nx">NUMBER</span><span class="p">&gt;</span>/<span class="nx">g</span></code></pre></div>
-
 <p>Также для этой команды (да и вообще для любых других команд в command mode)
 можно указать диапазон строк. Существует большое количество способов того, как
 его можно указать (<code>:h range</code>). Я лишь перечислю те, которые мне запомнились:</p>
-
 <ul>
 <li>Со строки 1 по строку 100:</li>
 </ul>
-
 <p><div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="m">1</span><span class="p">,</span><span class="m">100</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>light</p>
-
 <ul>
 <li>Строки относительно текущей. В данном случае замена будет сделана на текущей
 строке, на 10 строках выше и на 20 ниже:</li>
 </ul>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="m">-10</span><span class="p">,+</span><span class="m">20</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
-
 <ul>
 <li>Начиная с текущей строки. Чтобы заменить на текущей строке и на 10 строках
 ниже неё:</li>
 </ul>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span>.<span class="p">,+</span><span class="m">10</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
-
 <ul>
 <li>С какой-либо строки и до конца файла:</li>
 </ul>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="m">10</span><span class="p">,</span>$<span class="nx">s</span><span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
-
 <ul>
 <li>Весь файл (шорткат для <code>1,$</code>):</li>
 </ul>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span>%<span class="nx">s</span><span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
-
 <p>Ещё у команды замены есть довольно полезная опция <code>c</code>, например:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span>%<span class="nx">s</span><span class="sr">/and/</span><span class="nx">end</span>/<span class="nx">gc</span></code></pre></div>
-
 <p>Если указать её, то перед заменой каждого совпадения vim будет спрашивать
 действие:</p>
-
-<p><img src="images/vim-replace-gc.png" alt="замена с подтверждением" /></p>
-
+<p><img src="images/vim-replace-gc.png" alt="замена с подтверждением"></p>
 <p>Описание опций:</p>
-
 <ul>
 <li><code>y</code> &ndash; заменить текущее совпадение и перейти к следующему</li>
 <li><code>n</code> &ndash; не заменять текущее совпадение и перейти к следующему</li>
@@ -306,48 +241,32 @@ VIM&rdquo;</em>. Но не найдёт ничего в строке: <em>&ldquo
 <li><code>^E</code> и <code>^Y</code> у меня почему-то не захотели работать, да и в документации ничего
 толком не удалось найти</li>
 </ul>
-
 <p>Вооружившись полученными знаниями, я навернул себе полезный маппинг:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">Leader</span><span class="p">&gt;</span><span class="nx">r</span> :.<span class="p">,</span>$<span class="nx">s</span><span class="sr">/\&lt;&lt;C-r&gt;&lt;C-w&gt;\&gt;/</span>/<span class="nx">gc</span><span class="p">&lt;</span><span class="nx">left</span><span class="p">&gt;&lt;</span><span class="nx">left</span><span class="p">&gt;&lt;</span><span class="nx">left</span><span class="p">&gt;</span></code></pre></div>
-
 <p>Это заклинание заменяет слово, на котором расположен курсор, на то, что вы
 укажете. Делает оно это начиная с текущей строчки и до конца файла. При этом
 указана опция <code>c</code>, которая позволяет выбирать что конкретно менять, а что нет.
 Этот маппинг я использую в основном для переименовывания переменных, методов и
 т.д. Довольно удобно. Например:</p>
-
-<p><img src="images/replace-map.gif" alt="маппинг для замены" /></p>
-
+<p><img src="images/replace-map.gif" alt="маппинг для замены"></p>
 <p>Кстати, в normal mode есть пара команд, связанных с заменой:</p>
-
 <ul>
 <li><code>&amp;</code> &ndash; повторить на текущей строке предыдущую команду замены</li>
 <li><code>g&amp;</code> &ndash; повторить на всём файле предыдущую команду замены</li>
 </ul>
-
 <p>А теперь перейдём к команде <code>:g</code>. Она позволяет выполнить какую-либо команду
 для строк, которые будут найдены заданным поисковым запросом. Например:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">g</span> <span class="sr">/^\s/</span> :<span class="nx">center</span></code></pre></div>
-
 <p>В данном случае, vim отцентрирует текст в строках, которые содержат хотя бы
 один пробел в начале.  Как говорится, лучше один раз увидеть:</p>
-
-<p><img src="images/command-g.gif" alt="пример работы команды g" /></p>
-
+<p><img src="images/command-g.gif" alt="пример работы команды g"></p>
 <p>Пример покруче:</p>
-
-<p><img src="images/command-g-normal.gif" alt="команда g и :normal" /></p>
-
+<p><img src="images/command-g-normal.gif" alt="команда g и :normal"></p>
 <p>Да, да. При помощи <code>:normal</code> можно выполнять команды из normal mode прямо в
 command mode. Это очень круто.</p>
-
 <p>И чуть не забыл: ещё есть <code>:g!</code>. Она похожа на <code>:g</code>, только выполняет команды
 для тех строк, которые не удовлетворяют поисковому запросу.</p>
-
 <h1 id="insert-mode">Insert mode</h1>
-
 <p>В vim есть такая вещь как регистры. Они вовлечены во множество выполняемых
 операций (копирование, удаление, макросы, и т.д.). Здесь можно почитать о них
 подробнее: <a href="http://blog.sanctum.geek.nz/advanced-vim-registers/">Advanced Vim
@@ -358,31 +277,32 @@ registers</a>. Или же можно
 какой-нибудь из регистров, вставить его в буфер, отредактировать и записать
 полученный текст обратно в регистр. Таким образом можно поправить макрос.
 Вариантов применения можно найти много.</p>
-
 <p>Эту фичу круто использовать с регистром <code>=</code>. Если в insert mode нажать
 <code>ctrl+r =</code>, то vim попросит ввести выражение. Например, можно ввести <code>60 * 60 * 24</code>
 и нажать Enter. Vim это выражение выполнит и результат вставит в буфер.</p>
-
 <p>А вот ещё парочка полезных команд для insert mode:</p>
-
 <ul>
-<li><code>ctrl+t</code> &ndash; увеличить отступ для текущей строки</li>
-<li><code>ctrl+d</code> &ndash; уменьшить отступ для текущей строки</li>
-<li><code>ctrl+o</code> &ndash; позволяет переключиться в normal mode для выполнения всего одной
+<li>
+<p><code>ctrl+t</code> &ndash; увеличить отступ для текущей строки</p>
+</li>
+<li>
+<p><code>ctrl+d</code> &ndash; уменьшить отступ для текущей строки</p>
+</li>
+<li>
+<p><code>ctrl+o</code> &ndash; позволяет переключиться в normal mode для выполнения всего одной
 команды. После выполнения которой vim обратно переключается в insert mode.
 Например, можно быстренько удалить все символы от курсора и до конца строки, а
-затем автоматически вернуться в insert mode: <code>ctrl+o D</code>.</li>
-<li><code>ctrl+a</code> &ndash; вставить тот фрагмент текста, который был вставлен за предыдущий
-сеанс работы в insert mode. Например:</li>
+затем автоматически вернуться в insert mode: <code>ctrl+o D</code>.</p>
+</li>
+<li>
+<p><code>ctrl+a</code> &ndash; вставить тот фрагмент текста, который был вставлен за предыдущий
+сеанс работы в insert mode. Например:</p>
+<p><img src="images/ctrl-a-insert.gif" alt="ctrl-a в insert mode"></p>
+</li>
 </ul>
-
-<p><img src="images/ctrl-a-insert.gif" alt="ctrl-a в insert mode" /></p>
-
 <h1 id="normal-mode">Normal mode</h1>
-
 <p>Очередь за normal mode. Здесь особо расписывать нечего, поэтому просто приведу
 список команд с кратким описанием:</p>
-
 <ul>
 <li><code>ZZ</code> &ndash; делает тоже самое, что и <code>:x</code></li>
 <li><code>ZQ</code> &ndash; тоже самое, что и <code>:q!</code></li>
@@ -392,66 +312,45 @@ registers</a>. Или же можно
 <em>&ldquo;alice.txt&rdquo; line 15 of 15 &ndash;100%&ndash; col 28</em>. Вообще, всю эту информацию можно
 увидеть в status bar, если настроить его соответствующим образом.</li>
 </ul>
-
 <p>Хотя, одна команда таки заслуживает более подробного описания. Это
 <code>gq{motion}</code>. Она выполняет переформатирование текста. Например, <code>gqip</code>
 позволяет автоматически переформатировать параграф текста таким образом, что
 строки в нём по длине не будут превышать 81 символ (или сколько у вас задано в
 настройках). Часто использую её при написании блогозаписей. И снова, лучше один
 раз увидеть:</p>
-
-<p><img src="images/gqip-normal.gif" alt="gqip в nomal mode" /></p>
-
+<p><img src="images/gqip-normal.gif" alt="gqip в nomal mode"></p>
 <h1 id="visual-mode">Visual mode</h1>
-
 <p>Оказывается, между разными типами visual mode можно переключаться. Например:</p>
-
 <ul>
 <li>Переходим в visual line mode (<code>V</code>) и выбираем пару строк.</li>
 <li>Нажимаем <code>ctrl+v</code>, и vim переключается в visual block mode. Сохранив при этом
 выделение, но поменяв его соответствующим образом.</li>
 <li>Нажимаем <code>v</code>, и vim переключается в visual mode.</li>
 </ul>
-
 <p>И снова гифка:</p>
-
-<p><img src="images/switch-visual-mode.gif" alt="переключение между разными visual mode" /></p>
-
+<p><img src="images/switch-visual-mode.gif" alt="переключение между разными visual mode"></p>
 <p>А вот visual block mode имеет пару очень крутых возможностей. Дальше и пойдёт
 речь о них.</p>
-
 <p><code>&lt;c-v&gt;{motion}I{text}</code> позволяет выделить некоторый блок текста и вставить
 перед ним на каждой строке определённый текст. Например, <code>&lt;c-v&gt;5jI&gt;&gt; &lt;Esc&gt;</code>:</p>
-
-<p><img src="images/ctrl-v-shift-i.gif" alt="visual block mode и I" /></p>
-
+<p><img src="images/ctrl-v-shift-i.gif" alt="visual block mode и I"></p>
 <p><code>&lt;c-v&gt;{motion}A{text}</code> аналогичен предыдущему, но текст вставляется после
 каждой строки выделенного блока. Например, <code>&lt;c-v&gt;5jA &gt;&gt;&gt;&gt;&lt;Esc&gt;</code>:</p>
-
-<p><img src="images/ctrl-v-shift-a.gif" alt="visual block mode и A" /></p>
-
+<p><img src="images/ctrl-v-shift-a.gif" alt="visual block mode и A"></p>
 <p><code>&lt;c-v&gt;{motion}c{text}</code> &ndash; при помощи этого можно заменить текст в блоке.
 Например, <code>&lt;c-v&gt;5jec COOKIES! &lt;Esc&gt;</code>:</p>
-
-<p><img src="images/ctrl-v-c.gif" alt="visual block mode и c" /></p>
-
+<p><img src="images/ctrl-v-c.gif" alt="visual block mode и c"></p>
 <p>И последнее: <code>&lt;c-v&gt;{motion}r{char}</code>. Заменяет каждый символ в выделенном блоке
 на указанный. Например, <code>&lt;c-v&gt;5j$r*</code>:</p>
-
-<p><img src="images/ctrl-v-r.gif" alt="visual block mode и r" /></p>
-
+<p><img src="images/ctrl-v-r.gif" alt="visual block mode и r"></p>
 <p>Кстати, для normal mode есть ещё команда <code>gv</code>. Она позволяет повторить
 предыдущую операцию выделения.</p>
-
 <h1 id="command-mode">Command mode</h1>
-
 <p>Ну а для command mode у меня припасён всего лишь один совет &ndash; это команда
 <code>ctrl-f</code>. Она позволяет редактировать вводимые команды, используя так привычные
 нам insert mode и normal mode. Эта фича прям очень упрощает жизнь при вводе
 каких-то длинных команд в command mode.</p>
-
 <h1 id="заключение">Заключение</h1>
-
 <p>Довольно объёмный пост получился. Надеюсь, кому-нибудь он поможет стать
 продуктивнее в vim&rsquo;е. Ну а если у вас есть идеи (какие-нибудь команды, удобные
 мапинги и пр.), то просьба постить их в комментарии.</p>
