@@ -6,10 +6,20 @@
     <description>Recent content in Blogs on schfkt&#39;s website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Oct 2019 00:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://schfkt.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Making backups in the cloud with restic</title>
+      <link>https://schfkt.github.io/blog/making-backups-with-restic/</link>
+      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://schfkt.github.io/blog/making-backups-with-restic/</guid>
+      <description>Intro  There&amp;rsquo;re two types of people: the ones who don&amp;rsquo;t do backups yet, and the ones who already do &amp;ndash; Somebody on the Internet
+ I broke my iPhone recently, and the worst thing is that there were around 60GB of photos and videos inside&amp;hellip; But, lucky me, I did a complete backup of it a month ago. You might ask: &amp;ldquo;Why don&amp;rsquo;t you just upload your photos to iCloud?</description>
+    </item>
     
     <item>
       <title>Vim cheatsheet</title>
