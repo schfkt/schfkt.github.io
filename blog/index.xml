@@ -6,10 +6,20 @@
     <description>Recent content in Blogs on schfkt&#39;s website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 31 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://schfkt.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Running OpenFAAS on a local kubernetes cluster</title>
+      <link>https://schfkt.github.io/blog/running-openfaas-in-k3s/</link>
+      <pubDate>Sat, 31 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://schfkt.github.io/blog/running-openfaas-in-k3s/</guid>
+      <description>A couple of years ago when I just started familiarizing myself with kubernetes, I found minikube. It let you deploy a local kubernetes cluster within a virtual machine. But I didn&amp;rsquo;t manage to make it work. There were, among others, some issues with compiling of libvirt and kernel modules on Fedora. Eventually I stopped trying and dropped the idea of running k8s locally to play with it.
+Recently I&amp;rsquo;ve been experimenting with OpenFAAS to offload certain workload to lambdas.</description>
+    </item>
     
     <item>
       <title>Making backups in the cloud with restic</title>
