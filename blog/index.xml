@@ -2,41 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on schfkt&#39;s website</title>
-    <link>https://schfkt.github.io/blog/</link>
+    <link>https://schfkt.dev/blog/</link>
     <description>Recent content in Blogs on schfkt&#39;s website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 31 Oct 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://schfkt.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 31 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://schfkt.dev/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Running OpenFAAS on a local kubernetes cluster</title>
-      <link>https://schfkt.github.io/blog/running-openfaas-in-k3s/</link>
+      <link>https://schfkt.dev/blog/running-openfaas-in-k3s/</link>
       <pubDate>Sat, 31 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://schfkt.github.io/blog/running-openfaas-in-k3s/</guid>
+      <guid>https://schfkt.dev/blog/running-openfaas-in-k3s/</guid>
       <description>A couple of years ago when I just started familiarizing myself with kubernetes, I found minikube. It let you deploy a local kubernetes cluster within a virtual machine. But I didn&amp;rsquo;t manage to make it work. There were, among others, some issues with compiling of libvirt and kernel modules on Fedora. Eventually I stopped trying and dropped the idea of running k8s locally to play with it.
 Recently I&amp;rsquo;ve been experimenting with OpenFAAS to offload certain workload to lambdas.</description>
     </item>
     
     <item>
       <title>Making backups in the cloud with restic</title>
-      <link>https://schfkt.github.io/blog/making-backups-with-restic/</link>
+      <link>https://schfkt.dev/blog/making-backups-with-restic/</link>
       <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://schfkt.github.io/blog/making-backups-with-restic/</guid>
+      <guid>https://schfkt.dev/blog/making-backups-with-restic/</guid>
       <description>Intro  There&amp;rsquo;re two types of people: the ones who don&amp;rsquo;t do backups yet, and the ones who already do &amp;ndash; Somebody on the Internet
  I broke my iPhone recently, and the worst thing is that there were around 60GB of photos and videos inside&amp;hellip; But, lucky me, I did a complete backup of it a month ago. You might ask: &amp;ldquo;Why don&amp;rsquo;t you just upload your photos to iCloud?</description>
     </item>
     
     <item>
       <title>Vim cheatsheet</title>
-      <link>https://schfkt.github.io/blog/vim-cheatsheet/</link>
+      <link>https://schfkt.dev/blog/vim-cheatsheet/</link>
       <pubDate>Tue, 15 Oct 2019 00:00:00 +0300</pubDate>
       
-      <guid>https://schfkt.github.io/blog/vim-cheatsheet/</guid>
+      <guid>https://schfkt.dev/blog/vim-cheatsheet/</guid>
       <description>I&amp;rsquo;ve been using Vim heavily in the last two month. In order to not waste a lot of time looking up a certain feature or key combination, I came up with the idea to create a cheatsheet page for that.
 So here it is. I hope you&amp;rsquo;ll find something useful here too ;)
 CLI  vim +PluginInstall open Vim and run command  Splits  Move split window:  &amp;lt;c-w&amp;gt; H left &amp;lt;c-w&amp;gt; J down &amp;lt;c-w&amp;gt; K up &amp;lt;c-w&amp;gt; L right    QuickFix list QuickFix list contains the list of items.</description>
@@ -44,29 +40,29 @@ CLI  vim +PluginInstall open Vim and run command  Splits  Move split window:  &a
     
     <item>
       <title>Советы по работе в vim</title>
-      <link>https://schfkt.github.io/blog/vim-advices/</link>
+      <link>https://schfkt.dev/blog/vim-advices/</link>
       <pubDate>Sun, 04 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://schfkt.github.io/blog/vim-advices/</guid>
+      <guid>https://schfkt.dev/blog/vim-advices/</guid>
       <description>Совершенно случайно наткнулся в интернетах на такую замечательную вещь: Mastering vim. Это небольшой (3,5 часа примерно) видео-курс по vim за авторством Damian Conway. По его словам, он угорает в vi/vim уже 30 лет (я неслабо так удивлён). А значит, ему есть о чём рассказать. Курс я посмотрел целиком, и оно того стоило. Узнал оттуда о большом количестве команд, которые до этого совсем не встречал. Собственно, данный пост &amp;ndash; это подборка различных советов и трюков, которые я почерпнул, пока смотрел этот курс и лазил по документации в процессе.</description>
     </item>
     
     <item>
       <title>Как исправить говна в OS X, перестать беспокоиться и начать жить</title>
-      <link>https://schfkt.github.io/blog/fix-osx/</link>
+      <link>https://schfkt.dev/blog/fix-osx/</link>
       <pubDate>Sun, 30 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://schfkt.github.io/blog/fix-osx/</guid>
+      <guid>https://schfkt.dev/blog/fix-osx/</guid>
       <description>По-умолчанию, в OS X (подразумевается Yosemite) присутствуют некоторые особые &amp;ldquo;фичи&amp;rdquo;, которые немного мешают жить. Например, поехавший скролл, который появляется только тогда, когда скроллишь. Если зажать какую-нибудь клавишу (n, k и т.д.), то вылезает какое-то меню около курсора. Это вместо того, чтобы просто непрерывно вводить этот символ в поле ввода. Список можно продолжать до бесконечности. Хорошо хоть, что все эти &amp;ldquo;фичи&amp;rdquo; можно исправить. Чему данный пост и посвящён.
 Возвращаем на место скроллбар Для этого нужно пульнуть в терминале следующую команду:</description>
     </item>
     
     <item>
       <title>Vim, ctags и Ruby</title>
-      <link>https://schfkt.github.io/blog/vim-ctags-and-ruby/</link>
+      <link>https://schfkt.dev/blog/vim-ctags-and-ruby/</link>
       <pubDate>Sun, 28 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://schfkt.github.io/blog/vim-ctags-and-ruby/</guid>
+      <guid>https://schfkt.dev/blog/vim-ctags-and-ruby/</guid>
       <description>Посмотрел недавно скринкаст с Aaron Patterson (который @tenderlove). Понравилось, как он владеет vim&amp;rsquo;ом. Больше всего запомнилось то, как Aaron шарился по документации прямо в исходниках гемов. И вот для быстрого поиска нужного метода он как раз использовал встроенную в vim поддержку ctags. Я же этой фичей вообще не пользовался, хотя и знал о ней. Решил, что надо бы попробовать, и не пожалел.
 Установка и настройка ctags В OS X из коробки есть какой-то бинарник ctags, но он неправославный.</description>
     </item>

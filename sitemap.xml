@@ -3,56 +3,56 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://schfkt.github.io/blog/</loc>
+    <loc>https://schfkt.dev/blog/</loc>
     <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schfkt.github.io/blog/running-openfaas-in-k3s/</loc>
+    <loc>https://schfkt.dev/blog/running-openfaas-in-k3s/</loc>
     <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schfkt.github.io/blog/making-backups-with-restic/</loc>
+    <loc>https://schfkt.dev/</loc>
+    <lastmod>2020-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schfkt.dev/blog/making-backups-with-restic/</loc>
     <lastmod>2020-08-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schfkt.github.io/blog/vim-cheatsheet/</loc>
+    <loc>https://schfkt.dev/blog/vim-cheatsheet/</loc>
     <lastmod>2020-08-23T20:45:54+03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schfkt.github.io/about/</loc>
+    <loc>https://schfkt.dev/about/</loc>
     <lastmod>2019-06-01T20:02:49+03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schfkt.github.io/</loc>
-    <lastmod>2019-06-01T20:02:49+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://schfkt.github.io/blog/vim-advices/</loc>
+    <loc>https://schfkt.dev/blog/vim-advices/</loc>
     <lastmod>2015-10-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schfkt.github.io/blog/fix-osx/</loc>
+    <loc>https://schfkt.dev/blog/fix-osx/</loc>
     <lastmod>2015-08-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schfkt.github.io/blog/vim-ctags-and-ruby/</loc>
+    <loc>https://schfkt.dev/blog/vim-ctags-and-ruby/</loc>
     <lastmod>2015-06-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schfkt.github.io/categories/</loc>
+    <loc>https://schfkt.dev/categories/</loc>
   </url>
   
   <url>
-    <loc>https://schfkt.github.io/tags/</loc>
+    <loc>https://schfkt.dev/tags/</loc>
   </url>
   
 </urlset>
