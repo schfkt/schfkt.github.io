@@ -46,7 +46,7 @@
   <div class="post-header">
     <h1 class="post-title">Making backups in the cloud with restic</h1>
     <div class="post-meta">August 25, 2020</div>
-    <div class="post-meta">9 minutes to read</div>
+    <div class="post-meta">10 minutes to read</div>
   </div>
 
   <h1 id="intro">Intro</h1>
@@ -291,6 +291,10 @@ Aug <span class="m">19</span> 06:59:09 server systemd<span class="o">[</span>159
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">XDG_RUNTIME_DIR</span><span class="o">=</span>/run/user/<span class="nv">$UID</span> systemctl status --user restic-backup.timer
 </code></pre></div><p>Otherwise systemd will complain that it can&rsquo;t connect to dbus.</p>
 <p>And that&rsquo;s it. Now you have an automated backup system that keeps your data in the cloud, and, more importantly, it encrypts and deduplicates all the data.</p>
+<h1 id="update-on-april-2022">Update on April 2022</h1>
+<p>I&rsquo;ve been using this setup on a couple of home servers for 1.5 years. There is around 240Gb stored at the moment, and it
+costs me just 1.31 EUR (1.42 USD). And it proved to be reliable too: I had to restore the whole data at least once, and
+it went with no issues at all.</p>
 
 </article>
 
