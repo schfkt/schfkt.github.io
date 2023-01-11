@@ -3,15 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://schfkt.dev/blog/</loc>
-    <lastmod>2023-01-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://schfkt.dev/blog/book-10-go-mistakes/</loc>
-    <lastmod>2023-01-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://schfkt.dev/</loc>
-    <lastmod>2023-01-06T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://schfkt.dev/blog/running-openfaas-in-k3s/</loc>
+    <lastmod>2020-10-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://schfkt.dev/</loc>
     <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://schfkt.dev/blog/making-backups-with-restic/</loc>

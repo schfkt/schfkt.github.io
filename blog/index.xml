@@ -6,17 +6,7 @@
     <description>Recent content in Blogs on schfkt&#39;s website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 06 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://schfkt.dev/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Book review: 100 Go Mistakes and How to Avoid Them</title>
-      <link>https://schfkt.dev/blog/book-10-go-mistakes/</link>
-      <pubDate>Fri, 06 Jan 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://schfkt.dev/blog/book-10-go-mistakes/</guid>
-      <description>&lt;p&gt;At first I was a bit skeptical about this book. It looked more like a collection of recipes, but it turned out to be
-much more!&lt;/p&gt;</description>
-    </item>
-    
+    <lastBuildDate>Sat, 31 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://schfkt.dev/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Running OpenFAAS on a local kubernetes cluster</title>
       <link>https://schfkt.dev/blog/running-openfaas-in-k3s/</link>
