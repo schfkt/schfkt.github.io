@@ -58,24 +58,24 @@
 <h1 id="установка-и-настройка-ctags">Установка и настройка ctags</h1>
 <p>В OS X из коробки есть какой-то бинарник ctags, но он неправославный.
 Нам же нужен exuberant ctags. Накатим его при помощи homebrew и возрадуемся:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ brew install ctags</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ brew install ctags</span></span></code></pre></div>
 <p>И дабы убедиться, что ctags стал православным, запустим команду:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ ctags --version
-Exuberant Ctags 5.8, Copyright <span class="o">(</span>C<span class="o">)</span> 1996-2009 Darren Hiebert
-  Compiled: Mar <span class="m">16</span> 2015, 23:48:18
-  Addresses: &lt;dhiebert@users.sourceforge.net&gt;, http://ctags.sourceforge.net
-  Optional compiled features: +wildcards, +regex</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ ctags --version
+</span></span><span class="line"><span class="cl">Exuberant Ctags 5.8, Copyright <span class="o">(</span>C<span class="o">)</span> 1996-2009 Darren Hiebert
+</span></span><span class="line"><span class="cl">  Compiled: Mar <span class="m">16</span> 2015, 23:48:18
+</span></span><span class="line"><span class="cl">  Addresses: &lt;dhiebert@users.sourceforge.net&gt;, http://ctags.sourceforge.net
+</span></span><span class="line"><span class="cl">  Optional compiled features: +wildcards, +regex</span></span></code></pre></div>
 <p>Для ctags можно создать глобальный конфиг, чтобы постоянно не указывать гору опций
 при его запуске. Положить его нужно в <code>~/.ctags</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ cat ~/.ctags
---recurse<span class="o">=</span>yes
---tag-relative<span class="o">=</span>yes
---fields<span class="o">=</span>+l
---languages<span class="o">=</span>ruby,javascript
---exclude<span class="o">=</span>.git
---exclude<span class="o">=</span>node_modules
---exclude<span class="o">=</span>log
---exclude<span class="o">=</span>*.min.js</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ cat ~/.ctags
+</span></span><span class="line"><span class="cl">--recurse<span class="o">=</span>yes
+</span></span><span class="line"><span class="cl">--tag-relative<span class="o">=</span>yes
+</span></span><span class="line"><span class="cl">--fields<span class="o">=</span>+l
+</span></span><span class="line"><span class="cl">--languages<span class="o">=</span>ruby,javascript
+</span></span><span class="line"><span class="cl">--exclude<span class="o">=</span>.git
+</span></span><span class="line"><span class="cl">--exclude<span class="o">=</span>node_modules
+</span></span><span class="line"><span class="cl">--exclude<span class="o">=</span>log
+</span></span><span class="line"><span class="cl">--exclude<span class="o">=</span>*.min.js</span></span></code></pre></div>
 <p>Oписание опций:</p>
 <ul>
 <li><code>--recurse=yes</code> &ndash; указывает, что при поиске файлов для сканирования заданную
@@ -90,9 +90,9 @@ Exuberant Ctags 5.8, Copyright <span class="o">(</span>C<span class="o">)</span>
 <h1 id="используем-ctags-с-vimом">Используем ctags с vim&rsquo;ом</h1>
 <p>Чтобы vim&rsquo;у откуда было брать идентификаторы (они же тэги),
 нужно сперва запустить ctags, который в свою очередь сгенерирует файл с ними:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ ctags
-$ ll tags
--rw-r--r--  <span class="m">1</span> schfkt  staff    13K <span class="m">28</span> июн 22:05 tags</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ ctags
+</span></span><span class="line"><span class="cl">$ ll tags
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> schfkt  staff    13K <span class="m">28</span> июн 22:05 tags</span></span></code></pre></div>
 <p>По-дефолту, vim как раз ищет тэги в файле tags в директории, в которой он запущен.
 Поэтому больше ничего конфигурировать не нужно и можно опробовать на деле
 следующие хоткеи/команды в vim&rsquo;е:</p>
@@ -109,7 +109,7 @@ $ ll tags
 новые идентификаторы добавились в tags-файл. Делать это руками каждый раз
 утомительно. Но автоматизировать процесс можно, добавив следующую строчку в
 .vimrc:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">au BufWritePost *.js,*.rb silent! !ctags 2&gt; /dev/null <span class="p">&amp;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">au BufWritePost *.js,*.rb silent! !ctags 2&gt; /dev/null <span class="p">&amp;</span></span></span></code></pre></div>
 <p>Таким образом Vim, после каждой записи в файл с расширением rb или js, будет
 запускать команду <code>ctags 2&gt; /dev/null &amp;</code>.</p>
 <h1 id="примеры-использования-команд-в-vimе">Примеры использования команд в vim&rsquo;е</h1>
@@ -133,7 +133,7 @@ $ ll tags
 <li>При генерации тегов запускать ctags с параметром <code>--fields=+l</code></li>
 <li>Включить фичу, добавив строчку в .vimrc:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ycm_collect_identifiers_from_tags_files</span> <span class="p">=</span> <span class="m">1</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ycm_collect_identifiers_from_tags_files</span> <span class="p">=</span> <span class="m">1</span></span></span></code></pre></div>
 <h2 id="ctrlpvim">ctrlp.vim</h2>
 <p>CtrlP &ndash; это такой прикольный плагин, при помощи которого можно быстро переходить
 к чему угодно (файлам, буферам, тэгам etc.). Он выводит список чего-то, и этот
@@ -144,7 +144,7 @@ $ ll tags
 <p>На скриншоте видно, что список тэгов отфильтрован по <code>create_table</code>. Для перехода
 по тэгу достаточно нажать <code>Enter</code>. У меня для удобства команда повешена на
 хоткей:</p>
-<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">t</span> :<span class="nx">CtrlPTag</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">t</span> :<span class="nx">CtrlPTag</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span></span></span></code></pre></div>
 <h2 id="tagbar">Tagbar</h2>
 <p>Экраноснимок лучше тысячи слов:
 <img src="images/vim-ctags-tagbar.png" alt="Tagbar"></p>
@@ -165,8 +165,8 @@ $ ll tags
 <ul>
 <li>Устанавливаем <a href="https://github.com/tpope/rbenv-ctags">плагин для rbenv</a>:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ git clone git://github.com/tpope/rbenv-ctags.git <span class="se">\
-</span><span class="se"></span>    ~/.rbenv/plugins/rbenv-ctags</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ git clone git://github.com/tpope/rbenv-ctags.git <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    ~/.rbenv/plugins/rbenv-ctags</span></span></code></pre></div>
 <ul>
 <li>Запускаем <code>rbenv ctags</code>, чтобы сгенерировать тэги для активной версии ruby. Или
 же <code>rbenv ctags 2.2.0</code>, чтобы сгенерировать тэги для версии 2.2.0. В
@@ -178,11 +178,11 @@ Tim Pope напилил <a href="https://github.com/tpope/gem-ctags">друго�
 <ul>
 <li>Устанавливам гем:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ gem install gem-ctags</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ gem install gem-ctags</span></span></code></pre></div>
 <ul>
 <li>Генерируем тэги для уже установленных гемов:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ gem ctags</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ gem ctags</span></span></code></pre></div>
 <p>Делать всё это каждый раз руками после установки новой версии ruby не труъ.
 Автоматизируем процесс при помощи плагина
 <a href="https://github.com/sstephenson/rbenv-default-gems">rbenv-default-gems</a>, который
@@ -190,13 +190,13 @@ Tim Pope напилил <a href="https://github.com/tpope/gem-ctags">друго�
 <ul>
 <li>Установим плагин:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ git clone git@github.com:sstephenson/rbenv-default-gems.git <span class="se">\
-</span><span class="se"></span>    ~/.rbenv/plugins/rbenv-default-gems</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ git clone git@github.com:sstephenson/rbenv-default-gems.git <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    ~/.rbenv/plugins/rbenv-default-gems</span></span></code></pre></div>
 <ul>
 <li>Создадим для него конфиг со следующим содержимым:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ cat ~/.rbenv/default-gems
-gem-ctags</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ cat ~/.rbenv/default-gems
+</span></span><span class="line"><span class="cl">gem-ctags</span></span></code></pre></div>
 <p>Ну вот, теперь тэги у нас будут генерироваться автоматически как для стандартной
 библиотеки ruby, так и для устанавливаемых гемов. Осталось заставить vim использовать
 эти тэги.</p>
@@ -209,7 +209,7 @@ gem-ctags</code></pre></div>
 качестве шелла zsh. Vim попросту будет использовать всегда системную версию
 ruby вместо выбранной. На странице плагина есть пара вариантов решения этой проблемы.
 Мне же помогло следующее:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sudo mv /etc/<span class="o">{</span>zshenv,zshrc<span class="o">}</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ sudo mv /etc/<span class="o">{</span>zshenv,zshrc<span class="o">}</span></span></span></code></pre></div>
 <p>После рестарта шелла проблема исчезла.</p>
 <p>Теперь установим плагин <a href="https://github.com/tpope/vim-bundler">vim-bundler</a>. Он
 будет указывать vim&rsquo;у пути до тэгов от гемов, указанных в соответствующем Gemfile.</p>
@@ -218,7 +218,6 @@ ruby вместо выбранной. На странице плагина ес�
 дополняет идентификаторы и из stdlib, и из гемов, и из вашего кода. Да и все эти
 идентификаторы можно будет быстро и удобно искать. Картиночка напоследок:
 <img src="images/vim-zbs-narm.png" alt="vim-zbs-narm"></p>
-
 </article>
 
 

@@ -44,11 +44,30 @@
   <ul class="posts">
     
     <li class="item">
+      <div class="meta">January 6, 2023</div>
+      <div class="title">
+        <a href="/blog/book-10-go-mistakes/">Book review: 100 Go Mistakes and How to Avoid Them</a>
+      </div>
+      <div class="description"><p>At first I was a bit skeptical about this book. It looked more like a collection of recipes, but it turned out to be
+much more!</p></div>
+      
+      <div>
+        <a href="/blog/book-10-go-mistakes/">Read More…</a>
+      </div>
+      
+    </li>
+    
+    <li class="item">
       <div class="meta">October 31, 2020</div>
       <div class="title">
         <a href="/blog/running-openfaas-in-k3s/">Running OpenFAAS on a local kubernetes cluster</a>
       </div>
-      <div class="description">An easy way to play with Kubernetes and OpenFAAS locally</div>
+      <div class="description"><p>A couple of years ago when I just started familiarizing myself with kubernetes, I found minikube. It let you deploy a local kubernetes cluster within a virtual machine. But I didn&rsquo;t manage to make it work. There were, among others, some issues with compiling of libvirt and kernel modules on Fedora. Eventually I stopped trying and dropped the idea of running k8s locally to play with it.</p></div>
+      
+      <div>
+        <a href="/blog/running-openfaas-in-k3s/">Read More…</a>
+      </div>
+      
     </li>
     
     <li class="item">
@@ -56,7 +75,12 @@
       <div class="title">
         <a href="/blog/making-backups-with-restic/">Making backups in the cloud with restic</a>
       </div>
-      <div class="description">Or how I automatically backup my data offsite</div>
+      <div class="description"><p>I broke my iPhone recently, and the worst thing is that there were around 60GB of photos and videos inside&hellip; But, lucky me, I did a complete backup of it a month ago. You might ask: &ldquo;Why don&rsquo;t you just upload your photos to iCloud? It&rsquo;s cheap, simple, and you get all of yout photos everywhere: on your mac, etc.&rdquo;. Yeah, it&rsquo;s good, simple and works well, until it doesn&rsquo;t. I had to recreate my whole iCloud Photo library twice, just because it stopped syncing data with no reason. And it happenned long time ago, when I just had around 20GB of data. Imagine recreating the library with 60GB of data&hellip;</p></div>
+      
+      <div>
+        <a href="/blog/making-backups-with-restic/">Read More…</a>
+      </div>
+      
     </li>
     
     <li class="item">
@@ -64,7 +88,13 @@
       <div class="title">
         <a href="/blog/vim-cheatsheet/">Vim cheatsheet</a>
       </div>
-      <div class="description">The list of Vim related commands for quick lookup</div>
+      <div class="description"><p>I&rsquo;ve been using Vim heavily in the last two month. In order to not waste a lot of time looking up a certain feature or key combination, I came up with the idea to create a cheatsheet page for that.</p>
+<p>So here it is. I hope you&rsquo;ll find something useful here too ;)</p></div>
+      
+      <div>
+        <a href="/blog/vim-cheatsheet/">Read More…</a>
+      </div>
+      
     </li>
     
     <li class="item">
@@ -72,7 +102,12 @@
       <div class="title">
         <a href="/blog/vim-advices/">Советы по работе в vim</a>
       </div>
-      <div class="description">Подборка различных советов по работе в vim</div>
+      <div class="description">Совершенно случайно наткнулся в интернетах на такую замечательную вещь: Mastering vim. Это небольшой (3,5 часа примерно) видео-курс по vim за авторством Damian Conway. По его словам, он угорает в vi/vim уже 30 лет (я неслабо так удивлён). А значит, ему есть о чём рассказать. Курс я посмотрел целиком, и оно того стоило. Узнал оттуда о большом количестве команд, которые до этого совсем не встречал. Собственно, данный пост &ndash; это подборка различных советов и трюков, которые я почерпнул, пока смотрел этот курс и лазил по документации в процессе.</div>
+      
+      <div>
+        <a href="/blog/vim-advices/">Read More…</a>
+      </div>
+      
     </li>
     
     <li class="item">
@@ -80,7 +115,18 @@
       <div class="title">
         <a href="/blog/fix-osx/">Тонкая настройка OS X</a>
       </div>
-      <div class="description">Пост посвящён настройке OS X для нужд продвинутых пользователей</div>
+      <div class="description"><p>По-умолчанию, в OS X (подразумевается Yosemite) присутствуют некоторые особые
+&ldquo;фичи&rdquo;, которые немного мешают жить. Например, поехавший скролл, который
+появляется только тогда, когда скроллишь. Если зажать какую-нибудь клавишу
+(n, k и т.д.), то вылезает какое-то меню около курсора. Это вместо того,
+чтобы просто непрерывно вводить этот символ в поле ввода. Список можно
+продолжать до бесконечности. Хорошо хоть, что все эти &ldquo;фичи&rdquo; можно исправить.
+Чему данный пост и посвящён.</p></div>
+      
+      <div>
+        <a href="/blog/fix-osx/">Read More…</a>
+      </div>
+      
     </li>
     
     <li class="item">
@@ -88,7 +134,17 @@
       <div class="title">
         <a href="/blog/vim-ctags-and-ruby/">Vim, ctags и Ruby</a>
       </div>
-      <div class="description">В этом посте я рассмотрю различные способы интеграции ctags и vim, в основном полезные для написания кода на ruby</div>
+      <div class="description"><p>Посмотрел недавно <a href="http://www.pluralsight.com/courses/play-by-play-aaron-patterson">скринкаст</a>
+с Aaron Patterson (который @tenderlove). Понравилось, как он владеет vim&rsquo;ом.
+Больше всего запомнилось то, как Aaron шарился по документации прямо в исходниках
+гемов. И вот для быстрого поиска нужного метода он как раз использовал встроенную
+в vim поддержку ctags. Я же этой фичей вообще не пользовался, хотя и знал о ней.
+Решил, что надо бы попробовать, и не пожалел.</p></div>
+      
+      <div>
+        <a href="/blog/vim-ctags-and-ruby/">Read More…</a>
+      </div>
+      
     </li>
     
   </ul>

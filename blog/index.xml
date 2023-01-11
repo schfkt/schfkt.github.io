@@ -6,15 +6,24 @@
     <description>Recent content in Blogs on schfkt&#39;s website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 31 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://schfkt.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://schfkt.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Book review: 100 Go Mistakes and How to Avoid Them</title>
+      <link>https://schfkt.dev/blog/book-10-go-mistakes/</link>
+      <pubDate>Fri, 06 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://schfkt.dev/blog/book-10-go-mistakes/</guid>
+      <description>&lt;p&gt;At first I was a bit skeptical about this book. It looked more like a collection of recipes, but it turned out to be
+much more!&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Running OpenFAAS on a local kubernetes cluster</title>
       <link>https://schfkt.dev/blog/running-openfaas-in-k3s/</link>
       <pubDate>Sat, 31 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://schfkt.dev/blog/running-openfaas-in-k3s/</guid>
-      <description>A couple of years ago when I just started familiarizing myself with kubernetes, I found minikube. It let you deploy a local kubernetes cluster within a virtual machine. But I didn&amp;rsquo;t manage to make it work. There were, among others, some issues with compiling of libvirt and kernel modules on Fedora. Eventually I stopped trying and dropped the idea of running k8s locally to play with it.
-Recently I&amp;rsquo;ve been experimenting with OpenFAAS to offload certain workload to lambdas.</description>
+      <description>&lt;p&gt;A couple of years ago when I just started familiarizing myself with kubernetes, I found minikube. It let you deploy a local kubernetes cluster within a virtual machine. But I didn&amp;rsquo;t manage to make it work. There were, among others, some issues with compiling of libvirt and kernel modules on Fedora. Eventually I stopped trying and dropped the idea of running k8s locally to play with it.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -23,19 +32,17 @@ Recently I&amp;rsquo;ve been experimenting with OpenFAAS to offload certain work
       <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://schfkt.dev/blog/making-backups-with-restic/</guid>
-      <description>Intro  There&amp;rsquo;re two types of people: the ones who don&amp;rsquo;t do backups yet, and the ones who already do &amp;ndash; Somebody on the Internet
- I broke my iPhone recently, and the worst thing is that there were around 60GB of photos and videos inside&amp;hellip; But, lucky me, I did a complete backup of it a month ago. You might ask: &amp;ldquo;Why don&amp;rsquo;t you just upload your photos to iCloud?</description>
+      <description>&lt;p&gt;I broke my iPhone recently, and the worst thing is that there were around 60GB of photos and videos inside&amp;hellip; But, lucky me, I did a complete backup of it a month ago. You might ask: &amp;ldquo;Why don&amp;rsquo;t you just upload your photos to iCloud? It&amp;rsquo;s cheap, simple, and you get all of yout photos everywhere: on your mac, etc.&amp;rdquo;. Yeah, it&amp;rsquo;s good, simple and works well, until it doesn&amp;rsquo;t. I had to recreate my whole iCloud Photo library twice, just because it stopped syncing data with no reason. And it happenned long time ago, when I just had around 20GB of data. Imagine recreating the library with 60GB of data&amp;hellip;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Vim cheatsheet</title>
       <link>https://schfkt.dev/blog/vim-cheatsheet/</link>
-      <pubDate>Tue, 15 Oct 2019 00:00:00 +0300</pubDate>
+      <pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://schfkt.dev/blog/vim-cheatsheet/</guid>
-      <description>I&amp;rsquo;ve been using Vim heavily in the last two month. In order to not waste a lot of time looking up a certain feature or key combination, I came up with the idea to create a cheatsheet page for that.
-So here it is. I hope you&amp;rsquo;ll find something useful here too ;)
-CLI  vim +PluginInstall open Vim and run command  Splits  Move split window:  &amp;lt;c-w&amp;gt; H left &amp;lt;c-w&amp;gt; J down &amp;lt;c-w&amp;gt; K up &amp;lt;c-w&amp;gt; L right    QuickFix list QuickFix list contains the list of items.</description>
+      <description>&lt;p&gt;I&amp;rsquo;ve been using Vim heavily in the last two month. In order to not waste a lot of time looking up a certain feature or key combination, I came up with the idea to create a cheatsheet page for that.&lt;/p&gt;
+&lt;p&gt;So here it is. I hope you&amp;rsquo;ll find something useful here too ;)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -53,8 +60,13 @@ CLI  vim +PluginInstall open Vim and run command  Splits  Move split window:  &a
       <pubDate>Sun, 30 Aug 2015 00:00:00 +0000</pubDate>
       
       <guid>https://schfkt.dev/blog/fix-osx/</guid>
-      <description>По-умолчанию, в OS X (подразумевается Yosemite) присутствуют некоторые особые &amp;ldquo;фичи&amp;rdquo;, которые немного мешают жить. Например, поехавший скролл, который появляется только тогда, когда скроллишь. Если зажать какую-нибудь клавишу (n, k и т.д.), то вылезает какое-то меню около курсора. Это вместо того, чтобы просто непрерывно вводить этот символ в поле ввода. Список можно продолжать до бесконечности. Хорошо хоть, что все эти &amp;ldquo;фичи&amp;rdquo; можно исправить. Чему данный пост и посвящён.
-Возвращаем на место скроллбар Для этого нужно пульнуть в терминале следующую команду:</description>
+      <description>&lt;p&gt;По-умолчанию, в OS X (подразумевается Yosemite) присутствуют некоторые особые
+&amp;ldquo;фичи&amp;rdquo;, которые немного мешают жить. Например, поехавший скролл, который
+появляется только тогда, когда скроллишь. Если зажать какую-нибудь клавишу
+(n, k и т.д.), то вылезает какое-то меню около курсора. Это вместо того,
+чтобы просто непрерывно вводить этот символ в поле ввода. Список можно
+продолжать до бесконечности. Хорошо хоть, что все эти &amp;ldquo;фичи&amp;rdquo; можно исправить.
+Чему данный пост и посвящён.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -63,8 +75,12 @@ CLI  vim +PluginInstall open Vim and run command  Splits  Move split window:  &a
       <pubDate>Sun, 28 Jun 2015 00:00:00 +0000</pubDate>
       
       <guid>https://schfkt.dev/blog/vim-ctags-and-ruby/</guid>
-      <description>Посмотрел недавно скринкаст с Aaron Patterson (который @tenderlove). Понравилось, как он владеет vim&amp;rsquo;ом. Больше всего запомнилось то, как Aaron шарился по документации прямо в исходниках гемов. И вот для быстрого поиска нужного метода он как раз использовал встроенную в vim поддержку ctags. Я же этой фичей вообще не пользовался, хотя и знал о ней. Решил, что надо бы попробовать, и не пожалел.
-Установка и настройка ctags В OS X из коробки есть какой-то бинарник ctags, но он неправославный.</description>
+      <description>&lt;p&gt;Посмотрел недавно &lt;a href=&#34;http://www.pluralsight.com/courses/play-by-play-aaron-patterson&#34;&gt;скринкаст&lt;/a&gt;
+с Aaron Patterson (который @tenderlove). Понравилось, как он владеет vim&amp;rsquo;ом.
+Больше всего запомнилось то, как Aaron шарился по документации прямо в исходниках
+гемов. И вот для быстрого поиска нужного метода он как раз использовал встроенную
+в vim поддержку ctags. Я же этой фичей вообще не пользовался, хотя и знал о ней.
+Решил, что надо бы попробовать, и не пожалел.&lt;/p&gt;</description>
     </item>
     
   </channel>
