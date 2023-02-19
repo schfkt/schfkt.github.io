@@ -102,27 +102,27 @@ Pope, плагины которого уже заполонили половин
 ветвям дерева, представляющего историю изменений. Рассмотрим пример:</p>
 <ul>
 <li>Создали новый файл</li>
-<li>Добавили строку: <em>&ldquo;Как я тебе это чистить буду? Вилкой что ли?!&rdquo;</em></li>
-<li>Добавили ещё строку: <em>&ldquo;Чисти, чисти, чисти. Раз-раз-раз.&rdquo;</em></li>
+<li>Добавили строку: <em>&ldquo;Как я тебе это чистить буду? Вилкой что ли?!&quot;</em></li>
+<li>Добавили ещё строку: <em>&ldquo;Чисти, чисти, чисти. Раз-раз-раз.&quot;</em></li>
 <li>Удалили эту сроку</li>
-<li>Добавили вместо неё строку: <em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&rdquo;</em></li>
+<li>Добавили вместо неё строку: <em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&quot;</em></li>
 </ul>
 <p>Если воспользоваться командами <code>u</code> и <code>ctrl-r</code> в normal mode, то мы сможем
 перемешаться в истории только по таким изменениям:</p>
 <ul>
-<li><em>&ldquo;Как я тебе это чистить буду? Вилкой что ли?!&rdquo;</em></li>
-<li><em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&rdquo;</em></li>
+<li><em>&ldquo;Как я тебе это чистить буду? Вилкой что ли?!&quot;</em></li>
+<li><em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&quot;</em></li>
 </ul>
 <p>Но мы не сможем вернуться на тот момент, когда была добавлена строка <em>&ldquo;Чисти,
-чисти, чисти. Раз-раз-раз.&rdquo;</em> Для этого существуют другие команды:</p>
+чисти, чисти. Раз-раз-раз.&quot;</em> Для этого существуют другие команды:</p>
 <ul>
 <li><code>g-</code> &ndash; переключиться на самое последнее измение в предыдущей ветви истории</li>
 <li><code>g+</code> &ndash; переключиться на самое последнее измение в следующей ветви истории</li>
 </ul>
 <p>Другими словами, если сейчас мы находимся на том моменте, когда была добавлена
-строка <em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&rdquo;</em>, то при помощи команды
+строка <em>&ldquo;У тебя самого хорошо получается. Ты и чисти.&quot;</em>, то при помощи команды
 <code>g-</code> мы можем вернуться к тому моменту, когда была добавлена строка <em>&ldquo;Чисти,
-чисти, чисти. Раз-раз-раз.&rdquo;</em>. А вернуться обратно уже можем при помощи <code>g+</code>.</p>
+чисти, чисти. Раз-раз-раз.&quot;</em>. А вернуться обратно уже можем при помощи <code>g+</code>.</p>
 <p>Но всё это как-то сложно и к тому же не всегда может быть очевидно, а к какому
 вообще моменту истории файла мы перейдём в итоге. Разумеется, для упрощения
 жизни существует крутой плагин: <a href="https://github.com/sjl/gundo.vim">gundo.vim</a>.
@@ -137,21 +137,21 @@ Pope, плагины которого уже заполонили половин
 это возможность сохранения истории на диске. Таким образом, она будет доступна
 даже после того, как мы закроем файл или даже сам vim, а потом снова откроем.
 Для включения необходимо добавить следующую строчку в .vimrc:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">undofile</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">set</span> <span class="nx">undofile</span></code></pre></div>
 <p>По-умолчанию, файлы с историей изменений хранятся рядом с самими редактируемыми
 файлами.  Что не совсем удобно. Это также настраивается:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">undodir</span><span class="p">=~</span><span class="sr">/.vim/</span><span class="nx">undo</span><span class="sr">//</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">set</span> <span class="nx">undodir</span><span class="p">=~</span><span class="sr">/.vim/</span><span class="nx">undo</span><span class="sr">//</span></code></pre></div>
 <p>Стоит обратить внимание на <code>//</code> на конце. С такой настройкой vim будет создавать
 файлы примерно следующего вида:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ ll ~/.vim/undo
-</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> schfkt  staff    55K <span class="m">27</span> сен 14:37 %Users%schfkt%code%vim-examples%alice.txt
-</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> schfkt  staff   2,3K <span class="m">27</span> сен 14:39 %Users%schfkt%dotfiles%vimrc</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ ll ~/.vim/undo
+-rw-r--r--  <span class="m">1</span> schfkt  staff    55K <span class="m">27</span> сен 14:37 %Users%schfkt%code%vim-examples%alice.txt
+-rw-r--r--  <span class="m">1</span> schfkt  staff   2,3K <span class="m">27</span> сен 14:39 %Users%schfkt%dotfiles%vimrc</code></pre></div>
 <p>Это позволит избежать конфликтов для файлов, имеющих одинаковые имена. Т.к.,
 иначе vim (если просто указать какую-то директорию без <code>//</code>) для файла с
 историей будет использовать имя аналогичное имени редактируемого файла.</p>
 <p>Ещё одна полезная опция &ndash; это количество записей в истории изменений.
 По-умолчанию задано 1000.  Может быть маловато, поэтому я поменял на 5000:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">undolevels</span><span class="p">=</span><span class="m">5000</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">set</span> <span class="nx">undolevels</span><span class="p">=</span><span class="m">5000</span></code></pre></div>
 <h1 id="поиск-и-замена">Поиск и замена</h1>
 <p>До просмотра вышеупомянутого курса я как-то совсем плохо знал, как пользоваться
 заменой в vim&rsquo;е. Не так уж и часто приходилось это делать, поэтому синтаксис
@@ -195,41 +195,41 @@ is also considered to be a word.</p>
 <p>А это значит, что регэксп <code>\&lt;VIM\&gt;</code> найдёт <em>&ldquo;VIM&rdquo;</em> в строке: <em>&ldquo;I heard you like
 VIM&rdquo;</em>. Но не найдёт ничего в строке: <em>&ldquo;OMG_LOL_VIM_WOW&rdquo;</em>.</p>
 <p>Перейдём к замене. Самый простой пример данной команды выглядит так:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="nx">s</span><span class="sr">/doge/</span><span class="nx">wow</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">s</span><span class="sr">/doge/</span><span class="nx">wow</span></code></pre></div>
 <p>В этом случае в строке, на которой находится курсор, самый первый фрагмент
 текста <em>&ldquo;doge&rdquo;</em> будет заменён на <em>&ldquo;wow&rdquo;</em>. Именно так. И если в строке имеются
 два таких фрагмента, то второй останется неизменённым. Чтобы заменить все
 найденные фрагменты текста нужно воспользоваться флагом <code>g</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="nx">s</span><span class="sr">/doge/</span><span class="nx">wow</span>/<span class="nx">g</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">s</span><span class="sr">/doge/</span><span class="nx">wow</span>/<span class="nx">g</span></code></pre></div>
 <p>И разумеется здесь можно использовать регэкспы:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="nx">s</span><span class="sr">/\d\+/</span><span class="p">&lt;</span><span class="nx">NUMBER</span><span class="p">&gt;</span>/<span class="nx">g</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">s</span><span class="sr">/\d\+/</span><span class="p">&lt;</span><span class="nx">NUMBER</span><span class="p">&gt;</span>/<span class="nx">g</span></code></pre></div>
 <p>Также для этой команды (да и вообще для любых других команд в command mode)
 можно указать диапазон строк. Существует большое количество способов того, как
 его можно указать (<code>:h range</code>). Я лишь перечислю те, которые мне запомнились:</p>
 <ul>
 <li>Со строки 1 по строку 100:</li>
 </ul>
-<p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="m">1</span><span class="p">,</span><span class="m">100</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></span></span></code></pre></div>light</p>
+<p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="m">1</span><span class="p">,</span><span class="m">100</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>light</p>
 <ul>
 <li>Строки относительно текущей. В данном случае замена будет сделана на текущей
 строке, на 10 строках выше и на 20 ниже:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="m">-10</span><span class="p">,+</span><span class="m">20</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="m">-10</span><span class="p">,+</span><span class="m">20</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
 <ul>
 <li>Начиная с текущей строки. Чтобы заменить на текущей строке и на 10 строках
 ниже неё:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span>.<span class="p">,+</span><span class="m">10</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span>.<span class="p">,+</span><span class="m">10</span>s<span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
 <ul>
 <li>С какой-либо строки и до конца файла:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="m">10</span><span class="p">,</span>$<span class="nx">s</span><span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="m">10</span><span class="p">,</span>$<span class="nx">s</span><span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
 <ul>
 <li>Весь файл (шорткат для <code>1,$</code>):</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span>%<span class="nx">s</span><span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span>%<span class="nx">s</span><span class="sr">/beep/</span><span class="nx">boop</span>/<span class="nx">g</span></code></pre></div>
 <p>Ещё у команды замены есть довольно полезная опция <code>c</code>, например:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span>%<span class="nx">s</span><span class="sr">/and/</span><span class="nx">end</span>/<span class="nx">gc</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span>%<span class="nx">s</span><span class="sr">/and/</span><span class="nx">end</span>/<span class="nx">gc</span></code></pre></div>
 <p>Если указать её, то перед заменой каждого совпадения vim будет спрашивать
 действие:</p>
 <p><img src="images/vim-replace-gc.png" alt="замена с подтверждением"></p>
@@ -244,7 +244,7 @@ VIM&rdquo;</em>. Но не найдёт ничего в строке: <em>&ldquo
 толком не удалось найти</li>
 </ul>
 <p>Вооружившись полученными знаниями, я навернул себе полезный маппинг:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">Leader</span><span class="p">&gt;</span><span class="nx">r</span> :.<span class="p">,</span>$<span class="nx">s</span><span class="sr">/\&lt;&lt;C-r&gt;&lt;C-w&gt;\&gt;/</span>/<span class="nx">gc</span><span class="p">&lt;</span><span class="nx">left</span><span class="p">&gt;&lt;</span><span class="nx">left</span><span class="p">&gt;&lt;</span><span class="nx">left</span><span class="p">&gt;</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">Leader</span><span class="p">&gt;</span><span class="nx">r</span> :.<span class="p">,</span>$<span class="nx">s</span><span class="sr">/\&lt;&lt;C-r&gt;&lt;C-w&gt;\&gt;/</span>/<span class="nx">gc</span><span class="p">&lt;</span><span class="nx">left</span><span class="p">&gt;&lt;</span><span class="nx">left</span><span class="p">&gt;&lt;</span><span class="nx">left</span><span class="p">&gt;</span></code></pre></div>
 <p>Это заклинание заменяет слово, на котором расположен курсор, на то, что вы
 укажете. Делает оно это начиная с текущей строчки и до конца файла. При этом
 указана опция <code>c</code>, которая позволяет выбирать что конкретно менять, а что нет.
@@ -258,7 +258,7 @@ VIM&rdquo;</em>. Но не найдёт ничего в строке: <em>&ldquo
 </ul>
 <p>А теперь перейдём к команде <code>:g</code>. Она позволяет выполнить какую-либо команду
 для строк, которые будут найдены заданным поисковым запросом. Например:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="nx">g</span> <span class="sr">/^\s/</span> :<span class="nx">center</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">g</span> <span class="sr">/^\s/</span> :<span class="nx">center</span></code></pre></div>
 <p>В данном случае, vim отцентрирует текст в строках, которые содержат хотя бы
 один пробел в начале.  Как говорится, лучше один раз увидеть:</p>
 <p><img src="images/command-g.gif" alt="пример работы команды g"></p>

@@ -101,78 +101,78 @@ latter. This is what I want to have:</p>
 </ul>
 <p>Then prepare a file with the configuration variable. That file is going to be sourced by the rest of the scripts, let&rsquo;s
 call it <code>env.sh</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">RESTIC_REPOSITORY</span><span class="o">=</span><span class="s2">&#34;b2:&lt;bucket-name&gt;:&lt;dst-path-in-the-bucket&gt;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">RESTIC_PASSWORD</span><span class="o">=</span><span class="s2">&#34;&lt;repository-encryption-password&gt;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">B2_ACCOUNT_ID</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">B2_ACCOUNT_KEY</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
-</span></span></code></pre></div><p>Then create a script to initialize your repository. I called it <code>init.sh</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="nb">set</span> -e
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">source</span> <span class="s2">&#34;/opt/restic/etc/env.sh&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">/opt/restic/bin/restic init
-</span></span></code></pre></div><p>This script is going to be executed only once, before you start making backups.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">RESTIC_REPOSITORY</span><span class="o">=</span><span class="s2">&#34;b2:&lt;bucket-name&gt;:&lt;dst-path-in-the-bucket&gt;&#34;</span>
+<span class="nb">export</span> <span class="nv">RESTIC_PASSWORD</span><span class="o">=</span><span class="s2">&#34;&lt;repository-encryption-password&gt;&#34;</span>
+<span class="nb">export</span> <span class="nv">B2_ACCOUNT_ID</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+<span class="nb">export</span> <span class="nv">B2_ACCOUNT_KEY</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+</code></pre></div><p>Then create a script to initialize your repository. I called it <code>init.sh</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nb">set</span> -e
+
+<span class="nb">source</span> <span class="s2">&#34;/opt/restic/etc/env.sh&#34;</span>
+
+/opt/restic/bin/restic init
+</code></pre></div><p>This script is going to be executed only once, before you start making backups.</p>
 <p>And now the most important script, the one that&rsquo;s going to make backups. I called it <code>backup.sh</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="nb">source</span> <span class="s2">&#34;/opt/restic/etc/env.sh&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Making a backup&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">OUTPUT</span><span class="o">=</span><span class="sb">`</span>/opt/restic/bin/restic backup <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --files-from <span class="s2">&#34;/opt/restic/etc/includes.txt&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --exclude-file <span class="s2">&#34;/opt/restic/etc/excludes.txt&#34;</span><span class="sb">`</span>
-</span></span><span class="line"><span class="cl"><span class="nv">STATUS</span><span class="o">=</span><span class="nv">$?</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Notifying with telegram: STATUS=</span><span class="nv">$STATUS</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$STATUS</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;SUCCESSFUL BACKUP\n</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">else</span>
-</span></span><span class="line"><span class="cl">  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;FAILED BACKUP\n</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="nv">$STATUS</span>
-</span></span></code></pre></div><p>The script itself is pretty obvious: it makes a backup, stores the output in a variable. And pass it to another script that&rsquo;s responsible for telegram notifications.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nb">source</span> <span class="s2">&#34;/opt/restic/etc/env.sh&#34;</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;Making a backup&#34;</span>
+<span class="nv">OUTPUT</span><span class="o">=</span><span class="sb">`</span>/opt/restic/bin/restic backup <span class="se">\
+</span><span class="se"></span>  --files-from <span class="s2">&#34;/opt/restic/etc/includes.txt&#34;</span> <span class="se">\
+</span><span class="se"></span>  --exclude-file <span class="s2">&#34;/opt/restic/etc/excludes.txt&#34;</span><span class="sb">`</span>
+<span class="nv">STATUS</span><span class="o">=</span><span class="nv">$?</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;Notifying with telegram: STATUS=</span><span class="nv">$STATUS</span><span class="s2">&#34;</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$STATUS</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;SUCCESSFUL BACKUP\n</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
+<span class="k">else</span>
+  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;FAILED BACKUP\n</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
+<span class="k">fi</span>
+
+<span class="nb">exit</span> <span class="nv">$STATUS</span>
+</code></pre></div><p>The script itself is pretty obvious: it makes a backup, stores the output in a variable. And pass it to another script that&rsquo;s responsible for telegram notifications.</p>
 <p>The next script is used to cleanup the repository from outdated snapshots. For that specific case restic has a separate command: forget. It removes old snapshots and it&rsquo;s data (but only if you pass <code>--prune</code> flag).</p>
 <p>You can either set specific snapshots to be removed by passing a snapshot id, or you can set retention policies by using <code>--keep-*</code> flags (<code>--keep-daily 7</code> for example). Refer to the documentation for more details: <a href="https://restic.readthedocs.io/en/latest/060_forget.html#removing-snapshots-according-to-a-policy">Removing snapshots according to a policy</a></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="nb">source</span> <span class="s2">&#34;/opt/restic/etc/env.sh&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Removing outdated snapshots and data&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">OUTPUT</span><span class="o">=</span><span class="sb">`</span>/opt/restic/bin/restic forget <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --keep-daily <span class="m">7</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --keep-weekly <span class="m">5</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --keep-monthly <span class="m">12</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --keep-yearly <span class="m">4</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --prune<span class="sb">`</span>
-</span></span><span class="line"><span class="cl"><span class="nv">STATUS</span><span class="o">=</span><span class="nv">$?</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Notifying with telegram: STATUS=</span><span class="nv">$STATUS</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$STATUS</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;SUCCESSFUL CLEANUP\n</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">else</span>
-</span></span><span class="line"><span class="cl">  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;FAILED CLEANUP\n</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">CHECK_OUTPUT</span><span class="o">=</span><span class="sb">`</span>/opt/restic/bin/restic check<span class="sb">`</span>
-</span></span><span class="line"><span class="cl"><span class="nv">CHECK_STATUS</span><span class="o">=</span><span class="nv">$?</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$CHECK_OUTPUT</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Notifying with telegram: CHECK_STATUS=</span><span class="nv">$CHECK_STATUS</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$CHECK_STATUS</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;SUCCESSFUL CONSISTENCY CHECK\n</span><span class="nv">$CHECK_OUTPUT</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">else</span>
-</span></span><span class="line"><span class="cl">  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;FAILED CONSISTENCY CHECK\n</span><span class="nv">$CHECK_OUTPUT</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span></code></pre></div><p>The following quote from the docs clearly explains how the policies work:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nb">source</span> <span class="s2">&#34;/opt/restic/etc/env.sh&#34;</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;Removing outdated snapshots and data&#34;</span>
+
+<span class="nv">OUTPUT</span><span class="o">=</span><span class="sb">`</span>/opt/restic/bin/restic forget <span class="se">\
+</span><span class="se"></span>  --keep-daily <span class="m">7</span> <span class="se">\
+</span><span class="se"></span>  --keep-weekly <span class="m">5</span> <span class="se">\
+</span><span class="se"></span>  --keep-monthly <span class="m">12</span> <span class="se">\
+</span><span class="se"></span>  --keep-yearly <span class="m">4</span> <span class="se">\
+</span><span class="se"></span>  --prune<span class="sb">`</span>
+<span class="nv">STATUS</span><span class="o">=</span><span class="nv">$?</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;Notifying with telegram: STATUS=</span><span class="nv">$STATUS</span><span class="s2">&#34;</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$STATUS</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;SUCCESSFUL CLEANUP\n</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
+<span class="k">else</span>
+  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;FAILED CLEANUP\n</span><span class="nv">$OUTPUT</span><span class="s2">&#34;</span>
+<span class="k">fi</span>
+
+<span class="nv">CHECK_OUTPUT</span><span class="o">=</span><span class="sb">`</span>/opt/restic/bin/restic check<span class="sb">`</span>
+<span class="nv">CHECK_STATUS</span><span class="o">=</span><span class="nv">$?</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$CHECK_OUTPUT</span><span class="s2">&#34;</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;Notifying with telegram: CHECK_STATUS=</span><span class="nv">$CHECK_STATUS</span><span class="s2">&#34;</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$CHECK_STATUS</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;SUCCESSFUL CONSISTENCY CHECK\n</span><span class="nv">$CHECK_OUTPUT</span><span class="s2">&#34;</span>
+<span class="k">else</span>
+  /opt/telegram-alerts/bin/send.sh <span class="s2">&#34;FAILED CONSISTENCY CHECK\n</span><span class="nv">$CHECK_OUTPUT</span><span class="s2">&#34;</span>
+<span class="k">fi</span>
+</code></pre></div><p>The following quote from the docs clearly explains how the policies work:</p>
 <blockquote>
 <p>Suppose you make daily backups for 100 years. Then forget &ndash;keep-daily 7 &ndash;keep-weekly 5
 &ndash;keep-monthly 12 &ndash;keep-yearly 75 will keep the most recent 7 daily snapshots, then 4 (remember, 7 dailies already
@@ -182,51 +182,51 @@ month). And finally 75 last-day-of-the-year snapshots. All other snapshots are r
 <p>As you can see, the one I set up in the script (7 daily, 5 weekly, 12 monthly, 4 yearly) is almost the same as in the
 example. Except my policy is going to keep only 4 yearly snapshots.</p>
 <p>And the last script we need is the one you gonna use to restore the data. Try it once you do your the first backup to make sure the data isn&rsquo;t corrupted and the setup is correct:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="nb">source</span> <span class="s2">&#34;/opt/restic/etc/env.sh&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">TARGET</span><span class="o">=</span><span class="nv">$1</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$TARGET</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;TARGET is required&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="m">1</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">/opt/restic/bin/restic restore latest --target <span class="s2">&#34;</span><span class="nv">$TARGET</span><span class="s2">&#34;</span>
-</span></span></code></pre></div><h2 id="telegram-notifications">Telegram notifications</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nb">source</span> <span class="s2">&#34;/opt/restic/etc/env.sh&#34;</span>
+
+<span class="nv">TARGET</span><span class="o">=</span><span class="nv">$1</span>
+<span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$TARGET</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="nb">echo</span> <span class="s2">&#34;TARGET is required&#34;</span>
+  <span class="nb">exit</span> <span class="m">1</span>
+<span class="k">fi</span>
+
+/opt/restic/bin/restic restore latest --target <span class="s2">&#34;</span><span class="nv">$TARGET</span><span class="s2">&#34;</span>
+</code></pre></div><h2 id="telegram-notifications">Telegram notifications</h2>
 <p>All of the scripts above use a Telegram bot to send me notifications. For example, I get the complete output of restic command after a backup has finished.</p>
 <p>Here&rsquo;s the script itself:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="nb">source</span> ./env.sh
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">HOST</span><span class="o">=</span><span class="k">$(</span>hostname<span class="k">)</span>
-</span></span><span class="line"><span class="cl"><span class="nv">MESSAGE</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOST</span><span class="s2">: </span><span class="nv">$1</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">URL</span><span class="o">=</span><span class="s2">&#34;https://api.telegram.org/bot</span><span class="nv">$TELEGRAM_KEY</span><span class="s2">/sendMessage&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">curl -s -d <span class="s2">&#34;chat_id=</span><span class="nv">$CHAT_ID</span><span class="s2">&amp;disable_web_page_preview=1&amp;text=</span><span class="nv">$MESSAGE</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$URL</span><span class="s2">&#34;</span> &gt; /dev/null
-</span></span></code></pre></div><p>And this is the separate env file with all the configuration needed:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">TELEGRAM_KEY</span><span class="o">=</span><span class="s2">&#34;&lt;your-telegram-bot-api-key&gt;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">CHAT_ID</span><span class="o">=</span><span class="s2">&#34;&lt;id-of-a-chat-where-bot-sends-messages&gt;&#34;</span>
-</span></span></code></pre></div><h2 id="dealing-with-permissions">Dealing with permissions</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nb">source</span> ./env.sh
+
+<span class="nv">HOST</span><span class="o">=</span><span class="k">$(</span>hostname<span class="k">)</span>
+<span class="nv">MESSAGE</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOST</span><span class="s2">: </span><span class="nv">$1</span><span class="s2">&#34;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&#34;https://api.telegram.org/bot</span><span class="nv">$TELEGRAM_KEY</span><span class="s2">/sendMessage&#34;</span>
+
+curl -s -d <span class="s2">&#34;chat_id=</span><span class="nv">$CHAT_ID</span><span class="s2">&amp;disable_web_page_preview=1&amp;text=</span><span class="nv">$MESSAGE</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$URL</span><span class="s2">&#34;</span> &gt; /dev/null
+</code></pre></div><p>And this is the separate env file with all the configuration needed:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">TELEGRAM_KEY</span><span class="o">=</span><span class="s2">&#34;&lt;your-telegram-bot-api-key&gt;&#34;</span>
+<span class="nb">export</span> <span class="nv">CHAT_ID</span><span class="o">=</span><span class="s2">&#34;&lt;id-of-a-chat-where-bot-sends-messages&gt;&#34;</span>
+</code></pre></div><h2 id="dealing-with-permissions">Dealing with permissions</h2>
 <p>In order to be able to backup any file on your system, you have two options.</p>
 <p>The first one is to run restic as root, so there&rsquo;s no restrictions due to file permissions. But that doesn&rsquo;t look safe. Since we don&rsquo;t need all the root capabilities, just the ability to read all the files on the system.</p>
 <p>The other option is to run restic by a non-root user, but enable a specific linux capability on the restic binary. In that case you get just what you need, nothing more.</p>
 <p>I chose the second option. First, you have to add the capability:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># run this as root</span>
-</span></span><span class="line"><span class="cl">setcap <span class="nv">cap_dac_read_search</span><span class="o">=</span>+ep /path/to/restic/binary
-</span></span></code></pre></div><p>You can read more about linux capabilities at: <code>man capabilities 7</code>. TLDR for that specific one is:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">       CAP_DAC_READ_SEARCH
-</span></span><span class="line"><span class="cl">              * Bypass file <span class="nb">read</span> permission checks and directory <span class="nb">read</span> and execute permission checks<span class="p">;</span>
-</span></span></code></pre></div><p>Check that the restic binary have the required capability set:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ getcap restic
-</span></span><span class="line"><span class="cl"><span class="nv">restic</span> <span class="o">=</span> cap_dac_read_search+ep
-</span></span></code></pre></div><p>Also, make sure that the restic binary can only be executed by the user you&rsquo;re gonna use to make backups. This is very important, since the capability we&rsquo;ve just added allows restic binary unrestricted read of any file in the system.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># run this as root</span>
+setcap <span class="nv">cap_dac_read_search</span><span class="o">=</span>+ep /path/to/restic/binary
+</code></pre></div><p>You can read more about linux capabilities at: <code>man capabilities 7</code>. TLDR for that specific one is:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">       CAP_DAC_READ_SEARCH
+              * Bypass file <span class="nb">read</span> permission checks and directory <span class="nb">read</span> and execute permission checks<span class="p">;</span>
+</code></pre></div><p>Check that the restic binary have the required capability set:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ getcap restic
+<span class="nv">restic</span> <span class="o">=</span> cap_dac_read_search+ep
+</code></pre></div><p>Also, make sure that the restic binary can only be executed by the user you&rsquo;re gonna use to make backups. This is very important, since the capability we&rsquo;ve just added allows restic binary unrestricted read of any file in the system.</p>
 <h2 id="systemd">Systemd</h2>
 <p>Running backup scripts manually is error-prone and tedious, so we&rsquo;re going to use systemd to automate that.</p>
 <p>To be able to run systemd timers/services you have to first enable lingering for a user. It allows systemd services to run by specific user without that user being logged in to the system. Login as the user and run the following command:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">loginctl enable-linger
-</span></span></code></pre></div><p>Systemd timers are configured as two parts:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">loginctl enable-linger
+</code></pre></div><p>Systemd timers are configured as two parts:</p>
 <ul>
 <li>The unit file: specifies the command to run</li>
 <li>The timer file: configures when that unit must be run</li>
@@ -234,58 +234,58 @@ example. Except my policy is going to keep only 4 yearly snapshots.</p>
 <p>Names of these unit and timer files are important. For example, if you have a unit file named <code>restic-backup.service</code>, then the appropriate timer file must be named <code>restic-backup.timer</code>. So that systemd knows what timer file manages which unit, just a convention.</p>
 <p>User-specific systemd files are located at: <code>~/.config/systemd/user</code>.</p>
 <p>Here&rsquo;s the unit file for backup script <code>restic-backup.service</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="k">[Unit]</span>
-</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Backup with restic to Backblaze B2</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
-</span></span><span class="line"><span class="cl"><span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
-</span></span><span class="line"><span class="cl"><span class="na">Nice</span><span class="o">=</span><span class="s">10</span>
-</span></span><span class="line"><span class="cl"><span class="na">ExecStart</span><span class="o">=</span><span class="s">/opt/restic/bin/backup.sh</span>
-</span></span></code></pre></div><p>And the appropriate timer file <code>restic-backup.timer</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="k">[Unit]</span>
-</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Backup with restic on schedule</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">[Timer]</span>
-</span></span><span class="line"><span class="cl"><span class="na">OnCalendar</span><span class="o">=</span><span class="s">*-*-1/2 01:00:00</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
-</span></span><span class="line"><span class="cl"><span class="na">WantedBy</span><span class="o">=</span><span class="s">timers.target</span>
-</span></span></code></pre></div><p>It runs the backup script every two days at 01:00:00 starting from the first day of month.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Backup with restic to Backblaze B2</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">Nice</span><span class="o">=</span><span class="s">10</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/opt/restic/bin/backup.sh</span>
+</code></pre></div><p>And the appropriate timer file <code>restic-backup.timer</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Backup with restic on schedule</span>
+
+<span class="k">[Timer]</span>
+<span class="na">OnCalendar</span><span class="o">=</span><span class="s">*-*-1/2 01:00:00</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">timers.target</span>
+</code></pre></div><p>It runs the backup script every two days at 01:00:00 starting from the first day of month.</p>
 <p>Here&rsquo;re the unit and timer files for forget script. <code>restic-forget.service</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="k">[Unit]</span>
-</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Forget old restic backups</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
-</span></span><span class="line"><span class="cl"><span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
-</span></span><span class="line"><span class="cl"><span class="na">Nice</span><span class="o">=</span><span class="s">10</span>
-</span></span><span class="line"><span class="cl"><span class="na">ExecStart</span><span class="o">=</span><span class="s">/opt/restic/bin/forget.sh</span>
-</span></span></code></pre></div><p><code>restic-forget.timer</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="k">[Unit]</span>
-</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Forget restic backups on schedule</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">[Timer]</span>
-</span></span><span class="line"><span class="cl"><span class="na">OnCalendar</span><span class="o">=</span><span class="s">*-*-16 01:00:00</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
-</span></span><span class="line"><span class="cl"><span class="na">WantedBy</span><span class="o">=</span><span class="s">timers.target</span>
-</span></span></code></pre></div><p>It&rsquo;s run once a month on 16th day at 01:00. So it doesn&rsquo;t overlap with the backup script, since the backup script is run on odd days of a month (1, 3, 5 etc.).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Forget old restic backups</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">Nice</span><span class="o">=</span><span class="s">10</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/opt/restic/bin/forget.sh</span>
+</code></pre></div><p><code>restic-forget.timer</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Forget restic backups on schedule</span>
+
+<span class="k">[Timer]</span>
+<span class="na">OnCalendar</span><span class="o">=</span><span class="s">*-*-16 01:00:00</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">timers.target</span>
+</code></pre></div><p>It&rsquo;s run once a month on 16th day at 01:00. So it doesn&rsquo;t overlap with the backup script, since the backup script is run on odd days of a month (1, 3, 5 etc.).</p>
 <p>Now you have to enable and start timers:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl --user <span class="nb">enable</span> --now restic-backup.timer
-</span></span><span class="line"><span class="cl">systemctl --user start --now restic-backup.timer
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">systemctl --user <span class="nb">enable</span> --now restic-forget.timer
-</span></span><span class="line"><span class="cl">systemctl --user start --now restic-forget.timer
-</span></span></code></pre></div><p>You can check a timer&rsquo;s status with:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ systemctl status --user restic-backup.timer
-</span></span><span class="line"><span class="cl">● restic-backup.timer - Backup with restic on schedule
-</span></span><span class="line"><span class="cl">   Loaded: loaded <span class="o">(</span>/home/restic/.config/systemd/user/restic-backup.timer<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
-</span></span><span class="line"><span class="cl">   Active: active <span class="o">(</span>waiting<span class="o">)</span> since Wed 2020-08-19 06:59:09 EEST<span class="p">;</span> <span class="m">4</span> days ago
-</span></span><span class="line"><span class="cl">  Trigger: Tue 2020-08-25 01:00:00 EEST<span class="p">;</span> <span class="m">1</span> day 5h left
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Aug <span class="m">19</span> 06:59:09 server systemd<span class="o">[</span>1597<span class="o">]</span>: Started Backup with restic on schedule.
-</span></span></code></pre></div><p>In case you run that command over ssh on a server, you&rsquo;ll have to do it this way instead:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">XDG_RUNTIME_DIR</span><span class="o">=</span>/run/user/<span class="nv">$UID</span> systemctl status --user restic-backup.timer
-</span></span></code></pre></div><p>Otherwise systemd will complain that it can&rsquo;t connect to dbus.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">systemctl --user <span class="nb">enable</span> --now restic-backup.timer
+systemctl --user start --now restic-backup.timer
+
+systemctl --user <span class="nb">enable</span> --now restic-forget.timer
+systemctl --user start --now restic-forget.timer
+</code></pre></div><p>You can check a timer&rsquo;s status with:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ systemctl status --user restic-backup.timer
+● restic-backup.timer - Backup with restic on schedule
+   Loaded: loaded <span class="o">(</span>/home/restic/.config/systemd/user/restic-backup.timer<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+   Active: active <span class="o">(</span>waiting<span class="o">)</span> since Wed 2020-08-19 06:59:09 EEST<span class="p">;</span> <span class="m">4</span> days ago
+  Trigger: Tue 2020-08-25 01:00:00 EEST<span class="p">;</span> <span class="m">1</span> day 5h left
+
+Aug <span class="m">19</span> 06:59:09 server systemd<span class="o">[</span>1597<span class="o">]</span>: Started Backup with restic on schedule.
+</code></pre></div><p>In case you run that command over ssh on a server, you&rsquo;ll have to do it this way instead:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">XDG_RUNTIME_DIR</span><span class="o">=</span>/run/user/<span class="nv">$UID</span> systemctl status --user restic-backup.timer
+</code></pre></div><p>Otherwise systemd will complain that it can&rsquo;t connect to dbus.</p>
 <p>And that&rsquo;s it. Now you have an automated backup system that keeps your data in the cloud, and, more importantly, it encrypts and deduplicates all the data.</p>
 <h1 id="update-on-april-2022">Update on April 2022</h1>
 <p>I&rsquo;ve been using this setup on a couple of home servers for 1.5 years. There is around 240Gb stored at the moment, and it

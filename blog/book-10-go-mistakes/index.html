@@ -46,28 +46,37 @@
 <article class="post">
   <div class="post-header">
     <h1 class="post-title">Book review: 100 Go Mistakes and How to Avoid Them</h1>
-    <div class="post-meta">January 6, 2023</div>
-    <div class="post-meta">1 minutes to read</div>
+    <div class="post-meta">February 19, 2023</div>
+    <div class="post-meta">2 minutes to read</div>
   </div>
 
-  <p>At first I was a bit skeptical about this book. It looked more like a collection of recipes, but it turned out to be
-much more!</p>
-<p>All of the mistakes are grouped into different categories. Some of them are:</p>
+  <p>I recently read &ldquo;100 Go Mistakes and How to Avoid Them&rdquo; by Teiva Harsanyi, which I first heard about in the Golang
+Weekly Newsletter. At first, I was skeptical that it might be just another cookbook-style book, but it turned out to be
+much more.</p>
+<p><a href="https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them"><img src="https://images.manning.com/264/352/resize/book/9/5990f3c-19fb-4945-b024-7280e616773f/Harsanyi-HI.png" alt="Book Cover"></a></p>
+<p>All of the mistakes are organized into different categories. Some of them are:</p>
 <ul>
 <li>Types: numbers, strings, maps, slices.</li>
-<li>Concurrency: scheduler&rsquo;s internals, context, channels for synchronisation and communication.</li>
+<li>Concurrency: scheduler&rsquo;s internals, context propagation, channels for synchronization and communication.</li>
 <li>Error handling.</li>
 <li>Testing and benchmarking.</li>
+<li>Performance optimizations.</li>
 </ul>
-<p>Each of the &lt;sub-chapter?&gt; describes how a particular go feature works under the hood and how some specific edge cases
-can lead to mistakes in the code. For example, have you known that maps can only grow, but not shrink? Let&rsquo;s say you use
-a map for in-memory cache, and you keep adding elements <!-- raw HTML omitted --></p>
-<p>The last chapter - Optimisations - is the best in my opinion. It delves into the details on how CPU caches work, and
-what you need to keep in mind about it to write code that properly leverages them. And there&rsquo;s more in that chapter:
-stack vs heap memory difference and how to make sure you make less heap allocations, builtin profiler and tracer usage,
-compiler optimisations, etc.</p>
-<p>Conclusion: one of the most interesting software books I&rsquo;ve read in the past couple of years. Go grab one from Manning
-(link).</p>
+<p>Each of the chapters describes how a particular go feature works under the hood and how some specific edge cases can
+lead to mistakes in your code. For example, have you known that maps can only grow, but not shrink? Let&rsquo;s say you use a
+map for in-memory cache, and you keep adding elements, 10000 for example, when you delete all the elements, the internal
+map structure will have the same amount of buckets as if there still were 10000 elements. In that case, you just need to
+re-create the map periodically to avoid unbounded memory growth.</p>
+<p>The last chapter, Optimisations, is the most interesting in my opinion. It goes into detail on how CPU caches work, and
+what you need to keep in mind about it to write code that properly leverages them. Moreover, Teiva mentions a concept of
+mechanical sympathy here, which resonates with my own experience: to better work with a language (especially go), you
+need to understand how the machine works under the hood (CPU, Memory). And there&rsquo;s more in that chapter: stack vs heap
+memory difference and how to make sure you make fewer heap allocations, built-in profiler, and tracer usage, and
+compiler optimisations.</p>
+<p>Overall, I found &ldquo;100 Go Mistakes and How to Avoid Them&rdquo; to be one of the most interesting software books I&rsquo;ve read in
+the past couple of years. While it&rsquo;s probably best suited for more experienced Go developers, I think anyone working
+with Go could benefit from reading it. It provides a deep understanding of how Go works under the hood and offers
+practical advice for avoiding common mistakes. I highly recommend it.</p>
 </article>
 
 
