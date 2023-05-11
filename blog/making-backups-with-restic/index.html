@@ -296,9 +296,12 @@ once, and it went with no issues at all.</p>
 <ul>
 <li>424Gb of data stored (the actual repository size at B2 is smaller thanks to deduplication: 402.5Gb)</li>
 <li>It took around 13 hours to restore (download speed was around 50Mbit/sec), restic used ~480Mb of RSS memory, and a bit of CPU (10-20%)</li>
-<li>Storage cost: 2.24 EUR</li>
+<li>Storage cost: 2.24 EUR / Month</li>
 <li>Restore cost: 4.13 EUR</li>
 </ul>
+<p>There&rsquo;s one important thing that I noticed during this restore run. In order to restore not just files, but their
+correct permissions and ownership information, <code>restic restore</code> has to be run as <code>root</code>. Otherwise, all the restored
+files will be owned by a user who run the restore command.</p>
 </article>
 
 
