@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://schfkt.dev/blog/</loc>
-    <lastmod>2023-02-19T00:00:00+00:00</lastmod>
+    <loc>https://schfkt.dev/blog/workstation-setup-with-ansible/</loc>
+    <lastmod>2023-05-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://schfkt.dev/blog/book-10-go-mistakes/</loc>
-    <lastmod>2023-02-19T00:00:00+00:00</lastmod>
+    <loc>https://schfkt.dev/blog/</loc>
+    <lastmod>2023-05-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://schfkt.dev/</loc>
+    <lastmod>2023-05-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://schfkt.dev/blog/book-10-go-mistakes/</loc>
     <lastmod>2023-02-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://schfkt.dev/blog/running-openfaas-in-k3s/</loc>
