@@ -4,94 +4,65 @@
     <title>Blogs on schfkt&#39;s website</title>
     <link>https://schfkt.dev/blog/</link>
     <description>Recent content in Blogs on schfkt&#39;s website</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo 0.125.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://schfkt.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 13 May 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://schfkt.dev/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Automate workstation setup with Ansible</title>
       <link>https://schfkt.dev/blog/workstation-setup-with-ansible/</link>
       <pubDate>Sat, 13 May 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://schfkt.dev/blog/workstation-setup-with-ansible/</guid>
       <description>Since the early days of my software engineering career I was trying different ways to automate setup of my workstations. The first attempt that served me well, but was quite basic, included just a github repo with all my dotfiles plus a bash script to automate symlinking of these configs. Package instalation and some other tweaking were still done manually, although in case of macOS it was easy thanks to Brewfile with all the packages I needed.</description>
     </item>
-    
     <item>
       <title>Book review: 100 Go Mistakes and How to Avoid Them</title>
       <link>https://schfkt.dev/blog/book-10-go-mistakes/</link>
       <pubDate>Sun, 19 Feb 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://schfkt.dev/blog/book-10-go-mistakes/</guid>
-      <description>&lt;p&gt;I recently read &amp;ldquo;100 Go Mistakes and How to Avoid Them&amp;rdquo; by Teiva Harsanyi, which I first heard about in the Golang
-Weekly Newsletter. At first, I was skeptical that it might be just another cookbook-style book, but it turned out to be
-much more.&lt;/p&gt;</description>
+      <description>&lt;p&gt;I recently read &amp;ldquo;100 Go Mistakes and How to Avoid Them&amp;rdquo; by Teiva Harsanyi, which I first heard about in the Golang&#xA;Weekly Newsletter. At first, I was skeptical that it might be just another cookbook-style book, but it turned out to be&#xA;much more.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Running OpenFAAS on a local kubernetes cluster</title>
       <link>https://schfkt.dev/blog/running-openfaas-in-k3s/</link>
       <pubDate>Sat, 31 Oct 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://schfkt.dev/blog/running-openfaas-in-k3s/</guid>
       <description>&lt;p&gt;A couple of years ago when I just started familiarizing myself with kubernetes, I found minikube. It let you deploy a local kubernetes cluster within a virtual machine. But I didn&amp;rsquo;t manage to make it work. There were, among others, some issues with compiling of libvirt and kernel modules on Fedora. Eventually I stopped trying and dropped the idea of running k8s locally to play with it.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Making backups in the cloud with restic</title>
       <link>https://schfkt.dev/blog/making-backups-with-restic/</link>
       <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://schfkt.dev/blog/making-backups-with-restic/</guid>
       <description>&lt;p&gt;I broke my iPhone recently, and the worst thing is that there were around 60GB of photos and videos inside&amp;hellip; But, lucky me, I did a complete backup of it a month ago. You might ask: &amp;ldquo;Why don&amp;rsquo;t you just upload your photos to iCloud? It&amp;rsquo;s cheap, simple, and you get all of yout photos everywhere: on your mac, etc.&amp;rdquo;. Yeah, it&amp;rsquo;s good, simple and works well, until it doesn&amp;rsquo;t. I had to recreate my whole iCloud Photo library twice, just because it stopped syncing data with no reason. And it happenned long time ago, when I just had around 20GB of data. Imagine recreating the library with 60GB of data&amp;hellip;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Vim cheatsheet</title>
       <link>https://schfkt.dev/blog/vim-cheatsheet/</link>
       <pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://schfkt.dev/blog/vim-cheatsheet/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve been using Vim heavily in the last two month. In order to not waste a lot of time looking up a certain feature or key combination, I came up with the idea to create a cheatsheet page for that.&lt;/p&gt;
-&lt;p&gt;So here it is. I hope you&amp;rsquo;ll find something useful here too ;)&lt;/p&gt;</description>
+      <description>&lt;p&gt;I&amp;rsquo;ve been using Vim heavily in the last two month. In order to not waste a lot of time looking up a certain feature or key combination, I came up with the idea to create a cheatsheet page for that.&lt;/p&gt;&#xA;&lt;p&gt;So here it is. I hope you&amp;rsquo;ll find something useful here too ;)&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Советы по работе в vim</title>
       <link>https://schfkt.dev/blog/vim-advices/</link>
       <pubDate>Sun, 04 Oct 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://schfkt.dev/blog/vim-advices/</guid>
       <description>Совершенно случайно наткнулся в интернетах на такую замечательную вещь: Mastering vim. Это небольшой (3,5 часа примерно) видео-курс по vim за авторством Damian Conway. По его словам, он угорает в vi/vim уже 30 лет (я неслабо так удивлён). А значит, ему есть о чём рассказать. Курс я посмотрел целиком, и оно того стоило. Узнал оттуда о большом количестве команд, которые до этого совсем не встречал. Собственно, данный пост &amp;ndash; это подборка различных советов и трюков, которые я почерпнул, пока смотрел этот курс и лазил по документации в процессе.</description>
     </item>
-    
     <item>
       <title>Тонкая настройка OS X</title>
       <link>https://schfkt.dev/blog/fix-osx/</link>
       <pubDate>Sun, 30 Aug 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://schfkt.dev/blog/fix-osx/</guid>
-      <description>&lt;p&gt;По-умолчанию, в OS X (подразумевается Yosemite) присутствуют некоторые особые
-&amp;ldquo;фичи&amp;rdquo;, которые немного мешают жить. Например, поехавший скролл, который
-появляется только тогда, когда скроллишь. Если зажать какую-нибудь клавишу
-(n, k и т.д.), то вылезает какое-то меню около курсора. Это вместо того,
-чтобы просто непрерывно вводить этот символ в поле ввода. Список можно
-продолжать до бесконечности. Хорошо хоть, что все эти &amp;ldquo;фичи&amp;rdquo; можно исправить.
-Чему данный пост и посвящён.&lt;/p&gt;</description>
+      <description>&lt;p&gt;По-умолчанию, в OS X (подразумевается Yosemite) присутствуют некоторые особые&#xA;&amp;ldquo;фичи&amp;rdquo;, которые немного мешают жить. Например, поехавший скролл, который&#xA;появляется только тогда, когда скроллишь. Если зажать какую-нибудь клавишу&#xA;(n, k и т.д.), то вылезает какое-то меню около курсора. Это вместо того,&#xA;чтобы просто непрерывно вводить этот символ в поле ввода. Список можно&#xA;продолжать до бесконечности. Хорошо хоть, что все эти &amp;ldquo;фичи&amp;rdquo; можно исправить.&#xA;Чему данный пост и посвящён.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Vim, ctags и Ruby</title>
       <link>https://schfkt.dev/blog/vim-ctags-and-ruby/</link>
       <pubDate>Sun, 28 Jun 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://schfkt.dev/blog/vim-ctags-and-ruby/</guid>
-      <description>&lt;p&gt;Посмотрел недавно &lt;a href=&#34;http://www.pluralsight.com/courses/play-by-play-aaron-patterson&#34;&gt;скринкаст&lt;/a&gt;
-с Aaron Patterson (который @tenderlove). Понравилось, как он владеет vim&amp;rsquo;ом.
-Больше всего запомнилось то, как Aaron шарился по документации прямо в исходниках
-гемов. И вот для быстрого поиска нужного метода он как раз использовал встроенную
-в vim поддержку ctags. Я же этой фичей вообще не пользовался, хотя и знал о ней.
-Решил, что надо бы попробовать, и не пожалел.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Посмотрел недавно &lt;a href=&#34;http://www.pluralsight.com/courses/play-by-play-aaron-patterson&#34;&gt;скринкаст&lt;/a&gt;&#xA;с Aaron Patterson (который @tenderlove). Понравилось, как он владеет vim&amp;rsquo;ом.&#xA;Больше всего запомнилось то, как Aaron шарился по документации прямо в исходниках&#xA;гемов. И вот для быстрого поиска нужного метода он как раз использовал встроенную&#xA;в vim поддержку ctags. Я же этой фичей вообще не пользовался, хотя и знал о ней.&#xA;Решил, что надо бы попробовать, и не пожалел.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

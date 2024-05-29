@@ -9,13 +9,16 @@
   <title>Running OpenFAAS on a local kubernetes cluster</title>
   <meta name="description" content="A couple of years ago when I just started familiarizing myself with kubernetes, I found minikube. It let you deploy a local kubernetes cluster within a virtual machine. But I didn&rsquo;t manage to make it work. There were, among others, some issues with compiling of libvirt and kernel modules on Fedora. Eventually I stopped trying and dropped the idea of running k8s locally to play with it." />
 
-  <meta property="og:title" content="Running OpenFAAS on a local kubernetes cluster" />
-<meta property="og:description" content="A couple of years ago when I just started familiarizing myself with kubernetes, I found minikube. It let you deploy a local kubernetes cluster within a virtual machine. But I didn&rsquo;t manage to make it work. There were, among others, some issues with compiling of libvirt and kernel modules on Fedora. Eventually I stopped trying and dropped the idea of running k8s locally to play with it." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://schfkt.dev/blog/running-openfaas-in-k3s/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2020-10-31T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-10-31T00:00:00+00:00" />
-
+  <meta property="og:url" content="https://schfkt.dev/blog/running-openfaas-in-k3s/">
+  <meta property="og:site_name" content="schfkt&#39;s website">
+  <meta property="og:title" content="Running OpenFAAS on a local kubernetes cluster">
+  <meta property="og:description" content="A couple of years ago when I just started familiarizing myself with kubernetes, I found minikube. It let you deploy a local kubernetes cluster within a virtual machine. But I didn&amp;rsquo;t manage to make it work. There were, among others, some issues with compiling of libvirt and kernel modules on Fedora. Eventually I stopped trying and dropped the idea of running k8s locally to play with it.
+">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2020-10-31T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-10-31T00:00:00+00:00">
 
 
   <link href="//fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic" rel="stylesheet" type="text/css">
@@ -65,82 +68,81 @@
 <p>It turned out there&rsquo;s a much simpler solution to run k8s locally nowadays: k3d. It lets you run a <a href="https://k3s.io/">k3s</a> cluster, a certified Kubernetes alternative, in docker.</p>
 <h1 id="creating-a-cluster">Creating a cluster</h1>
 <p>On mac you can install k3d with brew:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">brew install k3d
-</code></pre></div><p>I assume you have already Docker installed. So now you can create a cluster with just these two commands:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">k3d cluster create
-k3d kubeconfig merge k3s-default --switch-context
-</code></pre></div><p>Well, actually only the first command creates a cluster. The second one just adds the cluster into your kubeconfig and switches the context to it. Now you can verify that it&rsquo;s running with:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ kubectl cluster-info
-Kubernetes master is running at https://0.0.0.0:55183
-CoreDNS is running at https://0.0.0.0:55183/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-Metrics-server is running at https://0.0.0.0:55183/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
-</code></pre></div><p>That&rsquo;s pretty awesome: in under a minute we&rsquo;ve got a locally running k3s cluster.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install k3d
+</span></span></code></pre></div><p>I assume you have already Docker installed. So now you can create a cluster with just these two commands:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">k3d cluster create
+</span></span><span class="line"><span class="cl">k3d kubeconfig merge k3s-default --switch-context
+</span></span></code></pre></div><p>Well, actually only the first command creates a cluster. The second one just adds the cluster into your kubeconfig and switches the context to it. Now you can verify that it&rsquo;s running with:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ kubectl cluster-info
+</span></span><span class="line"><span class="cl">Kubernetes master is running at https://0.0.0.0:55183
+</span></span><span class="line"><span class="cl">CoreDNS is running at https://0.0.0.0:55183/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+</span></span><span class="line"><span class="cl">Metrics-server is running at https://0.0.0.0:55183/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
+</span></span></code></pre></div><p>That&rsquo;s pretty awesome: in under a minute we&rsquo;ve got a locally running k3s cluster.</p>
 <h1 id="setting-up-openfaas">Setting up OpenFAAS</h1>
 <p>OpenFAAS organization provides a helm chart, so first you need to install helm:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">brew install helm
-</code></pre></div><p>Now you need to add OpenFAAS repository to helm:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">helm repo add openfaas https://openfaas.github.io/faas-netes/
-</code></pre></div><p>By default, OpenFAAS keeps it&rsquo;s own services and functions in two separate namespaces. We need to create them first:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f https://raw.githubusercontent.com/openfaas/faas-netes/master/namespaces.yml
-</code></pre></div><p>Check if it&rsquo;s here:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ kubectl get ns
-NAME              STATUS   AGE
-default           Active   3m24s
-kube-system       Active   3m24s
-kube-public       Active   3m24s
-kube-node-lease   Active   3m24s
-openfaas          Active   107s
-openfaas-fn       Active   107s
-</code></pre></div><p>Now everything is ready for OpenFAAS deployment:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">helm upgrade openfaas --install openfaas/openfaas <span class="se">\
-</span><span class="se"></span>    --namespace openfaas  <span class="se">\
-</span><span class="se"></span>    --set <span class="nv">functionNamespace</span><span class="o">=</span>openfaas-fn <span class="se">\
-</span><span class="se"></span>    --set <span class="nv">generateBasicAuth</span><span class="o">=</span><span class="nb">true</span>
-</code></pre></div><p>Wait a minute and check the deploys in openfaas namespace:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ kubectl -n openfaas get deploy
-NAME                READY   UP-TO-DATE   AVAILABLE   AGE
-nats                1/1     <span class="m">1</span>            <span class="m">1</span>           31m
-queue-worker        1/1     <span class="m">1</span>            <span class="m">1</span>           31m
-basic-auth-plugin   1/1     <span class="m">1</span>            <span class="m">1</span>           31m
-alertmanager        1/1     <span class="m">1</span>            <span class="m">1</span>           31m
-prometheus          1/1     <span class="m">1</span>            <span class="m">1</span>           31m
-gateway             1/1     <span class="m">1</span>            <span class="m">1</span>           31m
-faas-idler          1/1     <span class="m">1</span>            <span class="m">1</span>           31m
-</code></pre></div><h1 id="deploy-functions">Deploy functions</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install helm
+</span></span></code></pre></div><p>Now you need to add OpenFAAS repository to helm:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm repo add openfaas https://openfaas.github.io/faas-netes/
+</span></span></code></pre></div><p>By default, OpenFAAS keeps it&rsquo;s own services and functions in two separate namespaces. We need to create them first:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f https://raw.githubusercontent.com/openfaas/faas-netes/master/namespaces.yml
+</span></span></code></pre></div><p>Check if it&rsquo;s here:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ kubectl get ns
+</span></span><span class="line"><span class="cl">NAME              STATUS   AGE
+</span></span><span class="line"><span class="cl">default           Active   3m24s
+</span></span><span class="line"><span class="cl">kube-system       Active   3m24s
+</span></span><span class="line"><span class="cl">kube-public       Active   3m24s
+</span></span><span class="line"><span class="cl">kube-node-lease   Active   3m24s
+</span></span><span class="line"><span class="cl">openfaas          Active   107s
+</span></span><span class="line"><span class="cl">openfaas-fn       Active   107s
+</span></span></code></pre></div><p>Now everything is ready for OpenFAAS deployment:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm upgrade openfaas --install openfaas/openfaas <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --namespace openfaas  <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set <span class="nv">functionNamespace</span><span class="o">=</span>openfaas-fn <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set <span class="nv">generateBasicAuth</span><span class="o">=</span><span class="nb">true</span>
+</span></span></code></pre></div><p>Wait a minute and check the deploys in openfaas namespace:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ kubectl -n openfaas get deploy
+</span></span><span class="line"><span class="cl">NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+</span></span><span class="line"><span class="cl">nats                1/1     <span class="m">1</span>            <span class="m">1</span>           31m
+</span></span><span class="line"><span class="cl">queue-worker        1/1     <span class="m">1</span>            <span class="m">1</span>           31m
+</span></span><span class="line"><span class="cl">basic-auth-plugin   1/1     <span class="m">1</span>            <span class="m">1</span>           31m
+</span></span><span class="line"><span class="cl">alertmanager        1/1     <span class="m">1</span>            <span class="m">1</span>           31m
+</span></span><span class="line"><span class="cl">prometheus          1/1     <span class="m">1</span>            <span class="m">1</span>           31m
+</span></span><span class="line"><span class="cl">gateway             1/1     <span class="m">1</span>            <span class="m">1</span>           31m
+</span></span><span class="line"><span class="cl">faas-idler          1/1     <span class="m">1</span>            <span class="m">1</span>           31m
+</span></span></code></pre></div><h1 id="deploy-functions">Deploy functions</h1>
 <p>Now it&rsquo;s time to deploy some lambdas into OpenFAAS. First, install faas-cli:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">brew install faas-cli
-</code></pre></div><p>It&rsquo;s an official cli for OpenFAAS that lets you build, publish and deploy lambdas. In order to authenticate to OpenFAAS gateway obtain the auth password first, it&rsquo;s stored as a k8s secret:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PASSWORD</span><span class="o">=</span><span class="k">$(</span>kubectl -n openfaas get secret basic-auth -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&#34;{.data.basic-auth-password}&#34;</span> <span class="p">|</span> base64 --decode<span class="k">)</span>
-</code></pre></div><p>Since we didn&rsquo;t setup ingress to access OpenFAAS gateway, you have to forward a port to be able to interact with it. Do that in a separate shell:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kubectl port-forward svc/gateway -n openfaas 9091:8080
-</code></pre></div><p>Then try to authenticate to OpenFAAS:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">OPENFAAS_URL</span><span class="o">=</span>http://127.0.0.1:9091
-<span class="nb">echo</span> -n <span class="nv">$PASSWORD</span> <span class="p">|</span> faas-cli login -g <span class="nv">$OPENFAAS_URL</span> -u admin --password-stdin
-</code></pre></div><p>Now you can list the functions running in OpenFAAS:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ faas-cli -g <span class="nv">$OPENFAAS_URL</span> list
-Function                        Invocations     Replicas
-
-</code></pre></div><p>But, of course, it&rsquo;s empty. Since we haven&rsquo;t deployed anything yet. Let&rsquo;s deploy some sample functions that OpenFAAS organization provides:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">faas-cli -g <span class="nv">$OPENFAAS_URL</span> deploy -f https://raw.githubusercontent.com/openfaas/faas/master/stack.yml
-</code></pre></div><p>Wait for a couple of seconds and list the functions again:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ faas-cli -g <span class="nv">$OPENFAAS_URL</span> list
-Function                        Invocations     Replicas
-wordcount                       <span class="m">0</span>               <span class="m">1</span>
-hubstats                        <span class="m">0</span>               <span class="m">1</span>
-base64                          <span class="m">0</span>               <span class="m">1</span>
-echoit                          <span class="m">0</span>               <span class="m">1</span>
-markdown                        <span class="m">0</span>               <span class="m">1</span>
-nodeinfo                        <span class="m">0</span>               <span class="m">1</span>
-</code></pre></div><p>Yay! Now we can execute some of them:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ curl <span class="nv">$OPENFAAS_URL</span>/function/echoit -d <span class="s2">&#34;HELLO OPENFAAS&#34;</span>
-HELLO OPENFAAS
-
-$ curl <span class="nv">$OPENFAAS_URL</span>/function/wordcount -d <span class="s2">&#34;HELLO OPENFAAS&#34;</span>
-        <span class="m">0</span>         <span class="m">2</span>        <span class="m">14</span>
-
-$ curl <span class="nv">$OPENFAAS_URL</span>/function/markdown -d <span class="s2">&#34;HELLO **OPENFAAS**&#34;</span>
-&lt;p&gt;HELLO &lt;strong&gt;OPENFAAS&lt;/strong&gt;&lt;/p&gt;
-</code></pre></div><p>You can play around with OpenFAAS, check it&rsquo;s web UI also. It&rsquo;s located by the same <code>OPENFAAS_URL</code> address used to work with faas-cli. It&rsquo;s pretty basic, but you can see the functions deployed in your cluster, invocations count etc.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install faas-cli
+</span></span></code></pre></div><p>It&rsquo;s an official cli for OpenFAAS that lets you build, publish and deploy lambdas. In order to authenticate to OpenFAAS gateway obtain the auth password first, it&rsquo;s stored as a k8s secret:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">PASSWORD</span><span class="o">=</span><span class="k">$(</span>kubectl -n openfaas get secret basic-auth -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&#34;{.data.basic-auth-password}&#34;</span> <span class="p">|</span> base64 --decode<span class="k">)</span>
+</span></span></code></pre></div><p>Since we didn&rsquo;t setup ingress to access OpenFAAS gateway, you have to forward a port to be able to interact with it. Do that in a separate shell:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl port-forward svc/gateway -n openfaas 9091:8080
+</span></span></code></pre></div><p>Then try to authenticate to OpenFAAS:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">OPENFAAS_URL</span><span class="o">=</span>http://127.0.0.1:9091
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -n <span class="nv">$PASSWORD</span> <span class="p">|</span> faas-cli login -g <span class="nv">$OPENFAAS_URL</span> -u admin --password-stdin
+</span></span></code></pre></div><p>Now you can list the functions running in OpenFAAS:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ faas-cli -g <span class="nv">$OPENFAAS_URL</span> list
+</span></span><span class="line"><span class="cl">Function                        Invocations     Replicas
+</span></span></code></pre></div><p>But, of course, it&rsquo;s empty. Since we haven&rsquo;t deployed anything yet. Let&rsquo;s deploy some sample functions that OpenFAAS organization provides:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">faas-cli -g <span class="nv">$OPENFAAS_URL</span> deploy -f https://raw.githubusercontent.com/openfaas/faas/master/stack.yml
+</span></span></code></pre></div><p>Wait for a couple of seconds and list the functions again:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ faas-cli -g <span class="nv">$OPENFAAS_URL</span> list
+</span></span><span class="line"><span class="cl">Function                        Invocations     Replicas
+</span></span><span class="line"><span class="cl">wordcount                       <span class="m">0</span>               <span class="m">1</span>
+</span></span><span class="line"><span class="cl">hubstats                        <span class="m">0</span>               <span class="m">1</span>
+</span></span><span class="line"><span class="cl">base64                          <span class="m">0</span>               <span class="m">1</span>
+</span></span><span class="line"><span class="cl">echoit                          <span class="m">0</span>               <span class="m">1</span>
+</span></span><span class="line"><span class="cl">markdown                        <span class="m">0</span>               <span class="m">1</span>
+</span></span><span class="line"><span class="cl">nodeinfo                        <span class="m">0</span>               <span class="m">1</span>
+</span></span></code></pre></div><p>Yay! Now we can execute some of them:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl <span class="nv">$OPENFAAS_URL</span>/function/echoit -d <span class="s2">&#34;HELLO OPENFAAS&#34;</span>
+</span></span><span class="line"><span class="cl">HELLO OPENFAAS
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ curl <span class="nv">$OPENFAAS_URL</span>/function/wordcount -d <span class="s2">&#34;HELLO OPENFAAS&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="m">0</span>         <span class="m">2</span>        <span class="m">14</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ curl <span class="nv">$OPENFAAS_URL</span>/function/markdown -d <span class="s2">&#34;HELLO **OPENFAAS**&#34;</span>
+</span></span><span class="line"><span class="cl">&lt;p&gt;HELLO &lt;strong&gt;OPENFAAS&lt;/strong&gt;&lt;/p&gt;
+</span></span></code></pre></div><p>You can play around with OpenFAAS, check it&rsquo;s web UI also. It&rsquo;s located by the same <code>OPENFAAS_URL</code> address used to work with faas-cli. It&rsquo;s pretty basic, but you can see the functions deployed in your cluster, invocations count etc.</p>
 <p>And that&rsquo;s it for this time. In the next few posts we&rsquo;ll try to write our own function in go and to learn how to automate OpenFAAS deployment with Terraform.</p>
 </article>
 
