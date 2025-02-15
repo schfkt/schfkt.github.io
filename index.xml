@@ -4,7 +4,7 @@
     <title>schfkt&#39;s website</title>
     <link>https://schfkt.dev/</link>
     <description>Recent content on schfkt&#39;s website</description>
-    <generator>Hugo 0.125.1</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 13 May 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://schfkt.dev/index.xml" rel="self" type="application/rss+xml" />
@@ -48,7 +48,7 @@
       <link>https://schfkt.dev/about/</link>
       <pubDate>Sat, 01 Jun 2019 20:02:49 +0300</pubDate>
       <guid>https://schfkt.dev/about/</guid>
-      <description>I’m a seasoned backend developer specialized on Go and Node.js stacks. During the past three years I&amp;rsquo;ve been mostly working with Go, using it for different kinds of tasks ranging from simple CRUD APIs to image and audio processing services. On top of that I have experience with MariaDB (MySQL), MongoDB, Redis and RabbitMQ.&#xA;I had experience working in a completely remote team for 3 years in the past. That was an interesting challenge, and it really helped me to get better at managing my time and to learn to communicate efficiently.</description>
+      <description>I’m a seasoned backend developer specialized on Go and Node.js stacks. During the past years I&amp;rsquo;ve been mostly working with Go, using it for different kinds of tasks ranging from simple CRUD APIs to image and audio processing services. On top of that I have experience with MariaDB (MySQL), MongoDB, Redis and RabbitMQ.&#xA;I’m an avid learner and a very curious person who always tries to get to know how things work under the hood.</description>
     </item>
     <item>
       <title>Советы по работе в vim</title>
